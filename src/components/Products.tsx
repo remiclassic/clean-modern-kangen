@@ -1,7 +1,8 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ProductCard } from './ui/ProductCard';
 import { CustomButton } from './ui/Button';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './ui/alert-dialog';
 
 const products = [
   {
@@ -10,7 +11,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
     description: 'Our premium model with the most plate capability for maximum antioxidant potential.',
     features: ['8 Platinum-Coated Plates', '5 Water Settings', 'Voice-Guided Operation'],
-    price: 'From $4,980'
+    price: 'From $4,980',
+    videoUrl: 'https://www.youtube.com/embed/XmVUg3ZviGE'
   },
   {
     id: 2,
@@ -18,7 +20,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1560807707-8cc77767d783?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
     description: 'The flagship model that offers exceptional performance for families and businesses.',
     features: ['7 Solid Platinum-Coated Plates', 'LCD Display Panel', 'Automatic Cleaning'],
-    price: 'From $3,980'
+    price: 'From $3,980',
+    videoUrl: 'https://www.youtube.com/embed/gjvZX-ufm5E'
   },
   {
     id: 3,
@@ -26,11 +29,62 @@ const products = [
     image: 'https://images.unsplash.com/photo-1533422902779-aff35862e462?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
     description: 'Compact design for smaller spaces while delivering exceptional performance.',
     features: ['5 Platinum-Coated Plates', 'LCD Display', 'Energy Saving Mode'],
-    price: 'From $2,980'
+    price: 'From $2,980',
+    videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM'
   }
 ];
 
+const ProductDetails = ({ product, onClose }) => (
+  <div className="space-y-6">
+    <div className="aspect-video rounded-lg overflow-hidden">
+      <iframe 
+        className="w-full h-full" 
+        src={product.videoUrl}
+        title={`${product.title} Video`}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+    <div>
+      <h3 className="text-xl font-semibold mb-4">{product.title} Features</h3>
+      <ul className="space-y-2">
+        {product.features.map((feature, idx) => (
+          <li key={idx} className="flex items-start gap-2">
+            <span className="text-kangen-500 mt-1">•</span>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <p>
+      The {product.title} is designed with state-of-the-art technology to provide you with the healthiest water possible.
+      It features a self-cleaning system and delivers various types of water for different uses in your daily life.
+    </p>
+  </div>
+);
+
 const Products: React.FC = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  
+  const handleLearnMore = (product) => {
+    setSelectedProduct(product);
+  };
+  
+  const handleViewAllProducts = () => {
+    // Scroll to products section and show a brief highlight animation
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Add a highlight class temporarily
+      productsSection.classList.add('highlight-section');
+      setTimeout(() => {
+        productsSection.classList.remove('highlight-section');
+      }, 1000);
+    }
+  };
+
   return (
     <section id="products" className="bg-kangen-50/80 py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
@@ -46,20 +100,48 @@ const Products: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              title={product.title}
-              image={product.image}
-              description={product.description}
-              features={product.features}
-              price={product.price}
-              className="animate-fade-in-up"
-            />
+            <div key={product.id}>
+              <ProductCard
+                title={product.title}
+                image={product.image}
+                description={product.description}
+                features={product.features}
+                price={product.price}
+                className="animate-fade-in-up"
+              />
+              <div className="mt-4">
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <CustomButton 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full"
+                      onClick={() => handleLearnMore(product)}
+                    >
+                      Learn More
+                    </CustomButton>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent className="sm:max-w-[600px]">
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>{product.title} - Kangen Water System</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Get to know our premium {product.title} water ionizer.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Close</AlertDialogCancel>
+                      <AlertDialogAction>Request Info</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
+            </div>
           ))}
         </div>
         
         <div className="text-center">
-          <CustomButton variant="secondary" size="lg">
+          <CustomButton variant="secondary" size="lg" onClick={handleViewAllProducts}>
             View All Products
           </CustomButton>
         </div>

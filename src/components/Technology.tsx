@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CustomButton } from './ui/Button';
 
@@ -21,13 +20,26 @@ const Technology: React.FC = () => {
             <div className="relative">
               <div className="relative z-10 overflow-hidden rounded-2xl shadow-xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1593574343789-6de33c650392?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
                   alt="Kangen Water Technology" 
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 w-64 h-64 bg-kangen-100 rounded-full -z-10"></div>
               <div className="absolute -top-6 -right-6 w-32 h-32 bg-kangen-200 rounded-full -z-10"></div>
+            </div>
+            
+            <div className="mt-8 rounded-2xl overflow-hidden shadow-xl">
+              <div className="aspect-video">
+                <iframe 
+                  className="w-full h-full" 
+                  src="https://www.youtube.com/embed/XmVUg3ZviGE" 
+                  title="Kangen Water Technology" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
           </div>
           

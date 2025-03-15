@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { CustomButton } from './Button';
 
 interface ProductCardProps {
   title: string;
@@ -55,10 +54,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {price}
           </div>
         )}
-        
-        <CustomButton variant="outline" size="sm" className="w-full">
-          Learn More
-        </CustomButton>
       </div>
     </div>
   );

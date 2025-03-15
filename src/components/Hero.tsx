@@ -28,6 +28,20 @@ const Hero: React.FC = () => {
     };
   }, []);
 
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
+  const scrollToTechnology = () => {
+    const technologySection = document.getElementById('technology');
+    if (technologySection) {
+      technologySection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section 
       ref={heroRef}
@@ -62,11 +76,11 @@ const Hero: React.FC = () => {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <CustomButton size="lg" className="group">
+              <CustomButton size="lg" className="group" onClick={scrollToProducts}>
                 Explore Products
                 <ArrowRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </CustomButton>
-              <CustomButton variant="outline" size="lg">
+              <CustomButton variant="outline" size="lg" onClick={scrollToTechnology}>
                 Learn More
               </CustomButton>
             </div>
@@ -90,12 +104,26 @@ const Hero: React.FC = () => {
           <div className="relative hidden md:block">
             <div className="relative w-full aspect-square animate-float">
               <img 
-                src="https://images.unsplash.com/photo-1536939459926-301728717817?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
                 alt="Kangen Water Machine" 
                 className="w-full h-full object-contain rounded-2xl"
               />
               <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-kangen-100 rounded-full -z-10"></div>
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-kangen-200 rounded-full -z-10"></div>
+            </div>
+            
+            {/* Video Embed */}
+            <div className="mt-8 rounded-2xl overflow-hidden shadow-xl">
+              <div className="aspect-video">
+                <iframe 
+                  className="w-full h-full" 
+                  src="https://www.youtube.com/embed/C9COkslDijs" 
+                  title="Kangen Water Introduction" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
