@@ -89,8 +89,8 @@ const Benefits: React.FC = () => {
             transition={{ duration: 0.7 }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1616923048805-5e0d9885957b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-              alt="Happy Kangen Water User" 
+              src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21" 
+              alt="Crystal clear ocean waves" 
               className="w-full h-[500px] object-cover rounded-2xl shadow-lg"
             />
           </motion.div>

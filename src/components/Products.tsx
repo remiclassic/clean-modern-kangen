@@ -8,7 +8,7 @@ const products = [
   {
     id: 1,
     title: 'K8',
-    image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
     description: 'Our premium model with the most plate capability for maximum antioxidant potential.',
     features: ['8 Platinum-Coated Plates', '5 Water Settings', 'Voice-Guided Operation'],
     price: 'From $4,980',
@@ -17,7 +17,7 @@ const products = [
   {
     id: 2,
     title: 'SD501',
-    image: 'https://images.unsplash.com/photo-1560807707-8cc77767d783?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67',
     description: 'The flagship model that offers exceptional performance for families and businesses.',
     features: ['7 Solid Platinum-Coated Plates', 'LCD Display Panel', 'Automatic Cleaning'],
     price: 'From $3,980',
@@ -26,7 +26,7 @@ const products = [
   {
     id: 3,
     title: 'R',
-    image: 'https://images.unsplash.com/photo-1533422902779-aff35862e462?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
     description: 'Compact design for smaller spaces while delivering exceptional performance.',
     features: ['5 Platinum-Coated Plates', 'LCD Display', 'Energy Saving Mode'],
     price: 'From $2,980',

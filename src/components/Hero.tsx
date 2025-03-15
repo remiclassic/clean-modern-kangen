@@ -104,9 +104,9 @@ const Hero: React.FC = () => {
           <div className="relative hidden md:block">
             <div className="relative w-full aspect-square animate-float">
               <img 
-                src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
-                alt="Kangen Water Machine" 
-                className="w-full h-full object-contain rounded-2xl"
+                src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb" 
+                alt="Crystal clear water flowing through nature" 
+                className="w-full h-full object-cover rounded-2xl"
               />
               <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-kangen-100 rounded-full -z-10"></div>
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-kangen-200 rounded-full -z-10"></div>
