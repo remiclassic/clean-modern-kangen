@@ -99,7 +99,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-medium">Phone</h4>
-                    <p className="text-muted-foreground">(123) 456-7890</p>
+                    <p className="text-muted-foreground">647-884-4427</p>
                   </div>
                 </div>
                 
@@ -118,8 +118,8 @@ const Contact: React.FC = () => {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-medium">Address</h4>
-                    <p className="text-muted-foreground">123 Water Lane, Suite 100<br />Vancouver, BC V6B 1A1</p>
+                    <h4 className="font-medium">Contact</h4>
+                    <p className="text-muted-foreground">Matthieu Couture<br />Toronto / Montreal, Canada</p>
                   </div>
                 </div>
               </div>
