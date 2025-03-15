@@ -7,6 +7,7 @@ interface FeatureCardProps {
   description: string;
   icon?: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({
@@ -14,6 +15,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   description,
   icon,
   className,
+  style,
 }) => {
   return (
     <div 
@@ -21,6 +23,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         'group relative p-6 md:p-8 bg-white backdrop-blur-sm bg-opacity-70 rounded-xl border border-gray-100 hover:border-kangen-200 shadow-sm hover:shadow-md transition-all duration-300',
         className
       )}
+      style={style}
     >
       {icon && (
         <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-kangen-50 text-kangen-600 mb-4 group-hover:bg-kangen-100 transition-colors duration-300">

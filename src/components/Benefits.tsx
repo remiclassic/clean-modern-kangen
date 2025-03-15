@@ -1,7 +1,9 @@
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FeatureCard } from './ui/FeatureCard';
 import { Droplet, Heart, Zap, RefreshCw, Shield, Sparkles } from 'lucide-react';
+import { staggerContainer, staggerItems } from '@/utils/animations';
 
 const benefits = [
   {
@@ -56,29 +58,49 @@ const Benefits: React.FC = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {benefits.map((benefit) => (
-            <FeatureCard 
+        <motion.div 
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.25 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          {benefits.map((benefit, index) => (
+            <motion.div 
               key={benefit.id}
-              title={benefit.title}
-              description={benefit.description}
-              icon={benefit.icon}
-              className="animate-fade-in-up"
-              style={{ animationDelay: `${benefit.id * 100}ms` }}
-            />
+              variants={staggerItems}
+              custom={index}
+            >
+              <FeatureCard 
+                title={benefit.title}
+                description={benefit.description}
+                icon={benefit.icon}
+                className="h-full"
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         
         <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div className="animate-fade-in">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
             <img 
               src="https://images.unsplash.com/photo-1616923048805-5e0d9885957b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
               alt="Happy Kangen Water User" 
               className="w-full h-[500px] object-cover rounded-2xl shadow-lg"
             />
-          </div>
+          </motion.div>
           
-          <div className="animate-fade-in-up delay-100">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
             <h3 className="text-2xl md:text-3xl font-bold mb-6">Transform Your Life with <span className="gradient-text">Kangen Water®</span></h3>
             <p className="text-muted-foreground mb-6">
               Kangen Water® isn't just about hydration—it's about transforming your approach to health and wellness. With its unique properties and versatile applications, Kangen Water® has helped millions of people worldwide improve their quality of life.
@@ -106,7 +128,7 @@ const Benefits: React.FC = () => {
                 <p>Experience the difference in how you feel, look, and perform</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
