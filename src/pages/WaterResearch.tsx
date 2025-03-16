@@ -1,9 +1,8 @@
-
 import React from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { motion } from 'framer-motion';
-import { FileText, Lab, Microscope, BookOpen } from 'lucide-react';
+import { FileText, BeakerIcon, Microscope, BookOpen } from 'lucide-react';
 
 const researchItems = [
   {
@@ -20,7 +19,7 @@ const researchItems = [
     authors: 'Dr. James Parker, Dr. Lisa Thompson',
     date: 'October 2021',
     summary: 'Double-blind study examining the effects of alkaline ionized water on hydration status, performance metrics, and recovery in elite athletes.',
-    icon: <Lab className="w-8 h-8 text-kangen-600" />
+    icon: <BeakerIcon className="w-8 h-8 text-kangen-600" />
   },
   {
     id: 3,
