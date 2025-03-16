@@ -7,8 +7,11 @@ import { CustomButton } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, CheckCircle, MessageCircle, HeartHandshake, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/context/LanguageContext';
 
 const AboutMatthieu: React.FC = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { useLanguage } from '@/context/LanguageContext';
 
 const testimonials = [
   {
@@ -56,6 +57,57 @@ const testimonials = [
   }
 ];
 
+const frenchTestimonials = [
+  {
+    id: 1,
+    name: 'Sarah Johnson',
+    location: 'Seattle, WA',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
+    rating: 5,
+    testimonial: 'L\'eau Kangen a complètement transformé ma vie! J\'ai plus d\'énergie, une meilleure digestion, et ma peau n\'a jamais été aussi belle. C\'est incroyable comment quelque chose d\'aussi simple que changer votre eau peut faire une différence aussi profonde.'
+  },
+  {
+    id: 2,
+    name: 'Michael Chen',
+    location: 'San Francisco, CA',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d',
+    rating: 5,
+    testimonial: 'En tant qu\'athlète, une hydratation adéquate est essentielle pour ma performance. Depuis que je suis passé à l\'eau Kangen, mon temps de récupération a considérablement diminué, et j\'ai remarqué une amélioration de mon endurance pendant mes entraînements. Je ne reviendrais pas à l\'eau ordinaire!'
+  },
+  {
+    id: 3,
+    name: 'Jennifer Rodriguez',
+    location: 'Miami, FL',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956',
+    rating: 5,
+    testimonial: 'J\'étais sceptique au début, mais après avoir expérimenté les bienfaits de l\'eau Kangen par moi-même, j\'y crois maintenant. Mon reflux acide chronique s\'est considérablement amélioré, et toute ma famille adore le goût propre et rafraîchissant.'
+  },
+  {
+    id: 4,
+    name: 'David Williams',
+    location: 'Denver, CO',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d',
+    rating: 5,
+    testimonial: 'Ma femme m\'a convaincu d\'investir dans une machine à eau Kangen, et je dois admettre que c\'est l\'une des meilleures décisions que nous ayons prises pour notre santé. Les différents niveaux de pH sont parfaits pour diverses utilisations dans notre maison.'
+  },
+  {
+    id: 5,
+    name: 'Amanda Taylor',
+    location: 'Austin, TX',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80',
+    rating: 5,
+    testimonial: 'En tant que coach en nutrition holistique, je recommande toujours l\'eau Kangen à mes clients. Les propriétés alcalines soutiennent l\'équilibre naturel du corps, et j\'ai vu des améliorations remarquables dans de nombreux problèmes de santé chez ceux qui font le changement.'
+  },
+  {
+    id: 6,
+    name: 'Robert Kim',
+    location: 'Chicago, IL',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e',
+    rating: 5,
+    testimonial: 'Après des années de lutte contre les calculs rénaux, mon urologue m\'a suggéré d\'essayer l\'eau alcaline. Depuis l\'installation de ma machine Kangen, je n\'ai pas eu une seule récidive. De plus, le réglage de l\'eau acide est fantastique pour le nettoyage!'
+  }
+];
+
 const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => {
   return (
     <motion.div
@@ -90,6 +142,9 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
 };
 
 const Testimonials = () => {
+  const { t, language } = useLanguage();
+  const items = language === 'en' ? testimonials : frenchTestimonials;
+
   return (
     <>
       <Navbar />
@@ -97,16 +152,16 @@ const Testimonials = () => {
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
             <span className="inline-block py-1 px-3 bg-kangen-100 text-kangen-700 rounded-full text-sm font-medium mb-4">
-              Real Results
+              {t('pages.testimonials.realResults')}
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">What Our Customers Are Saying</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{t('pages.testimonials.title')}</h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Discover how Kangen Water® has transformed the lives of thousands of people worldwide. These testimonials reflect the real experiences of our satisfied customers.
+              {t('pages.testimonials.subtitle')}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map(testimonial => (
+            {items.map(testimonial => (
               <TestimonialCard key={testimonial.id} testimonial={testimonial} />
             ))}
           </div>
@@ -114,12 +169,12 @@ const Testimonials = () => {
           <div className="mt-20 bg-kangen-50 rounded-2xl p-8 md:p-12">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-8 md:mb-0 md:pr-10">
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Share Your Experience</h3>
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">{t('pages.testimonials.shareExperience')}</h3>
                 <p className="text-muted-foreground mb-6">
-                  We love hearing from our customers! If you've experienced the benefits of Kangen Water®, we'd be thrilled to hear your story.
+                  {t('pages.testimonials.shareExperienceText')}
                 </p>
                 <button className="bg-kangen-600 text-white font-medium px-6 py-3 rounded-lg hover:bg-kangen-700 transition-colors">
-                  Submit Your Testimonial
+                  {t('pages.testimonials.submitTestimonial')}
                 </button>
               </div>
               <div className="md:w-1/2">

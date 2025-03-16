@@ -1,91 +1,56 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ProductCard } from '../ui/ProductCard';
-import { CustomButton } from '../ui/Button';
-import { Award } from 'lucide-react';
-import { AlertDialogTrigger } from '../ui/alert-dialog';
-import type { Product } from '@/data/productData';
+import { Product } from '@/data/productData';
+import { useLanguage } from '@/context/LanguageContext';
+import { AlertDialogTrigger } from '@/components/ui/alert-dialog';
 
 interface AnimatedProductCardProps {
   product: Product;
   index: number;
   handleLearnMore: (product: Product) => void;
-  isVisible?: boolean;
 }
 
 const AnimatedProductCard: React.FC<AnimatedProductCardProps> = ({ 
   product, 
-  index, 
-  handleLearnMore,
-  isVisible = true 
+  index,
+  handleLearnMore
 }) => {
-  const productVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: index * 0.1,
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    },
-    exit: { 
-      opacity: 0, 
-      y: 20,
-      transition: {
-        duration: 0.3,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    },
-    hover: {
-      y: -10,
-      transition: {
-        duration: 0.3,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
-
+  const { t } = useLanguage();
+  
   return (
     <motion.div 
-      key={product.id}
-      custom={index}
-      initial="hidden"
-      animate={isVisible ? "visible" : "hidden"}
-      exit="exit"
-      whileHover="hover"
-      variants={productVariants}
-      className={product.isBestSeller ? "transform relative z-10" : ""}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.5,
+        delay: index * 0.1
+      }}
+      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
     >
-      {product.isBestSeller && (
-        <div className="absolute -top-4 -right-4 bg-gradient-to-r from-kangen-500 to-kangen-700 text-white py-1 px-3 rounded-full flex items-center gap-1 shadow-md z-20 transform rotate-3">
-          <Award className="h-4 w-4" />
-          <span className="text-sm font-medium">Best Seller</span>
+      <div className="p-6">
+        <div className="bg-gray-100 rounded-lg p-4 h-48 flex items-center justify-center mb-4">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="max-w-full max-h-full object-contain"
+          />
         </div>
-      )}
-      
-      <AlertDialogTrigger asChild>
-        <ProductCard
-          title={product.title}
-          image={product.image}
-          description={product.description}
-          features={product.features}
-          price={product.price}
-          className={`${product.isBestSeller ? "ring-2 ring-kangen-500 shadow-lg" : ""}`}
-          action={
-            <CustomButton 
-              variant="outline" 
-              size="sm" 
-              className="w-full mt-4"
+        <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
+        <p className="text-gray-600 line-clamp-3 mb-4">{product.description}</p>
+        <div className="flex justify-between items-center">
+          <span className="font-bold text-lg">{product.price}</span>
+          <AlertDialogTrigger asChild>
+            <button 
               onClick={() => handleLearnMore(product)}
+              className="px-4 py-2 bg-kangen-600 text-white rounded hover:bg-kangen-700 transition-colors"
             >
-              Learn More
-            </CustomButton>
-          }
-        />
-      </AlertDialogTrigger>
+              {t('products.learnMore')}
+            </button>
+          </AlertDialogTrigger>
+        </div>
+      </div>
     </motion.div>
   );
 };

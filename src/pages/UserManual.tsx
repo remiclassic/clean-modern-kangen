@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { motion } from 'framer-motion';
 import { Download, File, FileText, Book } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const manuals = [
   {
@@ -40,7 +41,45 @@ const manuals = [
   }
 ];
 
+const frenchManuals = [
+  {
+    id: 1,
+    title: 'Manuel d\'utilisation K8',
+    description: 'Guide complet pour configurer, utiliser et entretenir votre machine Kangen Water® K8.',
+    fileSize: '3.2 MB',
+    pages: 42,
+    icon: <FileText className="w-12 h-12 text-kangen-600" />
+  },
+  {
+    id: 2,
+    title: 'Manuel d\'utilisation SD501',
+    description: 'Instructions détaillées pour l\'utilisation et l\'entretien du modèle SD501.',
+    fileSize: '2.8 MB',
+    pages: 38,
+    icon: <FileText className="w-12 h-12 text-kangen-600" />
+  },
+  {
+    id: 3,
+    title: 'Guide de démarrage rapide modèle R',
+    description: 'Mettez-vous rapidement en marche avec votre machine Kangen Water® modèle R.',
+    fileSize: '1.5 MB',
+    pages: 20,
+    icon: <File className="w-12 h-12 text-kangen-600" />
+  },
+  {
+    id: 4,
+    title: 'Guide d\'entretien',
+    description: 'Meilleures pratiques pour nettoyer et entretenir votre machine Kangen Water®.',
+    fileSize: '2.1 MB',
+    pages: 24,
+    icon: <Book className="w-12 h-12 text-kangen-600" />
+  }
+];
+
 const UserManual = () => {
+  const { t, language } = useLanguage();
+  const items = language === 'en' ? manuals : frenchManuals;
+
   return (
     <>
       <Navbar />
@@ -48,16 +87,16 @@ const UserManual = () => {
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
             <span className="inline-block py-1 px-3 bg-kangen-100 text-kangen-700 rounded-full text-sm font-medium mb-4">
-              Product Resources
+              {t('pages.userManual.productResources')}
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">User Manuals & Guides</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{t('pages.userManual.title')}</h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Download user manuals, guides, and resources for your Kangen Water® machine to ensure optimal performance and longevity.
+              {t('pages.userManual.subtitle')}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
-            {manuals.map((manual, index) => (
+            {items.map((manual, index) => (
               <motion.div 
                 key={manual.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -80,7 +119,7 @@ const UserManual = () => {
                       </div>
                       <button className="flex items-center text-kangen-600 font-medium hover:text-kangen-700 transition-colors">
                         <Download className="w-4 h-4 mr-2" />
-                        Download PDF
+                        {t('pages.userManual.download')}
                       </button>
                     </div>
                   </div>
@@ -91,9 +130,9 @@ const UserManual = () => {
           
           <div className="bg-kangen-50 rounded-2xl p-8 max-w-4xl mx-auto">
             <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold mb-2">Need Technical Support?</h3>
+              <h3 className="text-2xl font-bold mb-2">{t('pages.userManual.needSupport')}</h3>
               <p className="text-gray-600">
-                Our customer support team is available to assist you with any technical questions or issues.
+                {t('pages.userManual.supportText')}
               </p>
             </div>
             <div className="flex flex-col md:flex-row justify-center gap-4">
@@ -101,13 +140,13 @@ const UserManual = () => {
                 href="#contact" 
                 className="bg-kangen-600 text-white text-center font-medium px-6 py-3 rounded-lg hover:bg-kangen-700 transition-colors"
               >
-                Contact Support
+                {t('pages.userManual.contactSupport')}
               </a>
               <a 
                 href="#faq" 
                 className="bg-white text-kangen-600 text-center font-medium px-6 py-3 rounded-lg border border-kangen-600 hover:bg-kangen-50 transition-colors"
               >
-                View FAQs
+                {t('pages.userManual.viewFaqs')}
               </a>
             </div>
           </div>

@@ -5,8 +5,11 @@ import Footer from '@/components/Footer';
 import { CustomButton } from '@/components/ui/Button';
 import { BarChart, CheckCircle, DollarSign, Users, TrendingUp, Award } from 'lucide-react';
 import GetStartedModal from '@/components/GetStartedModal';
+import { useLanguage } from '@/context/LanguageContext';
 
 const BusinessOpportunity = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -15,13 +18,13 @@ const BusinessOpportunity = () => {
         <section className="bg-gradient-to-r from-kangen-600 to-kangen-800 text-white py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-3xl md:text-5xl font-bold mb-6">Join the Kangen Water Business Opportunity</h1>
+              <h1 className="text-3xl md:text-5xl font-bold mb-6">{t('pages.businessOpportunity.title')}</h1>
               <p className="text-lg md:text-xl mb-8 opacity-90">
-                Transform lives while building a sustainable business with our revolutionary water technology
+                {t('pages.businessOpportunity.subtitle')}
               </p>
               <GetStartedModal>
                 <CustomButton size="lg" className="mt-4">
-                  Get Started Today
+                  {t('pages.businessOpportunity.getStarted')}
                 </CustomButton>
               </GetStartedModal>
             </div>
@@ -31,7 +34,7 @@ const BusinessOpportunity = () => {
         {/* Why Choose Us Section */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold text-center mb-12">Why Choose This Business Opportunity</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t('pages.businessOpportunity.whyChoose')}</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white p-8 rounded-lg shadow-md transition-transform hover:translate-y-[-5px]">
@@ -88,7 +91,7 @@ const BusinessOpportunity = () => {
         {/* How It Works Section */}
         <section className="py-16">
           <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold text-center mb-12">How The Business Works</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t('pages.businessOpportunity.howWorks')}</h2>
             
             <div className="max-w-4xl mx-auto">
               <div className="flex flex-col md:flex-row items-center mb-12">
@@ -145,7 +148,7 @@ const BusinessOpportunity = () => {
         {/* Testimonials */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold text-center mb-12">Success Stories</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t('pages.businessOpportunity.successStories')}</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white p-6 rounded-lg shadow-md">
@@ -205,9 +208,9 @@ const BusinessOpportunity = () => {
         {/* CTA Section */}
         <section className="py-16 bg-kangen-600 text-white">
           <div className="container mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to Start Your Kangen Water Business?</h2>
+            <h2 className="text-3xl font-bold mb-6">{t('pages.businessOpportunity.readyToStart')}</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Join thousands of successful distributors worldwide and start building your business today.
+              {t('pages.businessOpportunity.readyToStartText')}
             </p>
             <GetStartedModal>
               <CustomButton 
@@ -215,7 +218,7 @@ const BusinessOpportunity = () => {
                 size="lg" 
                 className="bg-white text-kangen-700 hover:bg-gray-100 shadow-lg"
               >
-                Become a Distributor
+                {t('pages.businessOpportunity.becomeDistributor')}
               </CustomButton>
             </GetStartedModal>
           </div>
@@ -224,7 +227,7 @@ const BusinessOpportunity = () => {
         {/* FAQ Section */}
         <section className="py-16">
           <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">{t('pages.businessOpportunity.faqTitle')}</h2>
             
             <div className="max-w-3xl mx-auto divide-y divide-gray-200">
               <div className="py-6">

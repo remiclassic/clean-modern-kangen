@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 // Define supported languages
 export type Language = 'en' | 'fr';
@@ -125,6 +125,41 @@ const enTranslations: Record<string, string> = {
   // Language
   'language.en': 'English',
   'language.fr': 'French',
+  
+  // Pages
+  'pages.faqs.title': 'Frequently Asked Questions',
+  'pages.faqs.subtitle': 'Find answers to common questions about Kangen Water®, our products, and the revolutionary benefits of hydrogen-rich ionized water.',
+  'pages.faqs.commonQuestions': 'Common Questions',
+  'pages.faqs.stillHaveQuestions': 'Still Have Questions?',
+  'pages.faqs.stillHaveQuestionsText': 'Our team is ready to help you with any questions you might have about our products, technology, or the benefits of Kangen Water®.',
+  'pages.faqs.contactUs': 'Contact Us',
+  
+  'pages.userManual.productResources': 'Product Resources',
+  'pages.userManual.title': 'User Manuals & Guides',
+  'pages.userManual.subtitle': 'Download user manuals, guides, and resources for your Kangen Water® machine to ensure optimal performance and longevity.',
+  'pages.userManual.download': 'Download PDF',
+  'pages.userManual.needSupport': 'Need Technical Support?',
+  'pages.userManual.supportText': 'Our customer support team is available to assist you with any technical questions or issues.',
+  'pages.userManual.contactSupport': 'Contact Support',
+  'pages.userManual.viewFaqs': 'View FAQs',
+  
+  'pages.testimonials.realResults': 'Real Results',
+  'pages.testimonials.title': 'What Our Customers Are Saying',
+  'pages.testimonials.subtitle': 'Discover how Kangen Water® has transformed the lives of thousands of people worldwide. These testimonials reflect the real experiences of our satisfied customers.',
+  'pages.testimonials.shareExperience': 'Share Your Experience',
+  'pages.testimonials.shareExperienceText': 'We love hearing from our customers! If you\'ve experienced the benefits of Kangen Water®, we\'d be thrilled to hear your story.',
+  'pages.testimonials.submitTestimonial': 'Submit Your Testimonial',
+  
+  'pages.businessOpportunity.title': 'Join the Kangen Water Business Opportunity',
+  'pages.businessOpportunity.subtitle': 'Transform lives while building a sustainable business with our revolutionary water technology',
+  'pages.businessOpportunity.getStarted': 'Get Started Today',
+  'pages.businessOpportunity.whyChoose': 'Why Choose This Business Opportunity',
+  'pages.businessOpportunity.howWorks': 'How The Business Works',
+  'pages.businessOpportunity.successStories': 'Success Stories',
+  'pages.businessOpportunity.readyToStart': 'Ready to Start Your Kangen Water Business?',
+  'pages.businessOpportunity.readyToStartText': 'Join thousands of successful distributors worldwide and start building your business today.',
+  'pages.businessOpportunity.becomeDistributor': 'Become a Distributor',
+  'pages.businessOpportunity.faqTitle': 'Frequently Asked Questions',
 };
 
 // French translations
@@ -238,6 +273,41 @@ const frTranslations: Record<string, string> = {
   // Language
   'language.en': 'Anglais',
   'language.fr': 'Français',
+  
+  // Pages
+  'pages.faqs.title': 'Questions Fréquemment Posées',
+  'pages.faqs.subtitle': 'Trouvez des réponses aux questions courantes sur Kangen Water®, nos produits et les avantages révolutionnaires de l\'eau ionisée riche en hydrogène.',
+  'pages.faqs.commonQuestions': 'Questions Courantes',
+  'pages.faqs.stillHaveQuestions': 'Vous Avez Encore des Questions?',
+  'pages.faqs.stillHaveQuestionsText': 'Notre équipe est prête à vous aider avec toutes les questions que vous pourriez avoir sur nos produits, notre technologie ou les avantages de Kangen Water®.',
+  'pages.faqs.contactUs': 'Contactez-Nous',
+  
+  'pages.userManual.productResources': 'Ressources Produit',
+  'pages.userManual.title': 'Manuels d\'Utilisation & Guides',
+  'pages.userManual.subtitle': 'Téléchargez les manuels d\'utilisation, guides et ressources pour votre machine Kangen Water® afin d\'assurer des performances et une longévité optimales.',
+  'pages.userManual.download': 'Télécharger PDF',
+  'pages.userManual.needSupport': 'Besoin de Support Technique?',
+  'pages.userManual.supportText': 'Notre équipe de support client est disponible pour vous aider avec toutes questions ou problèmes techniques.',
+  'pages.userManual.contactSupport': 'Contacter le Support',
+  'pages.userManual.viewFaqs': 'Voir les FAQs',
+  
+  'pages.testimonials.realResults': 'Résultats Réels',
+  'pages.testimonials.title': 'Ce Que Disent Nos Clients',
+  'pages.testimonials.subtitle': 'Découvrez comment Kangen Water® a transformé la vie de milliers de personnes dans le monde entier. Ces témoignages reflètent les expériences réelles de nos clients satisfaits.',
+  'pages.testimonials.shareExperience': 'Partagez Votre Expérience',
+  'pages.testimonials.shareExperienceText': 'Nous aimons recevoir des nouvelles de nos clients! Si vous avez expérimenté les avantages de Kangen Water®, nous serions ravis d\'entendre votre histoire.',
+  'pages.testimonials.submitTestimonial': 'Soumettre Votre Témoignage',
+  
+  'pages.businessOpportunity.title': 'Rejoignez l\'Opportunité Commerciale Kangen Water',
+  'pages.businessOpportunity.subtitle': 'Transformez des vies tout en construisant une entreprise durable avec notre technologie révolutionnaire de l\'eau',
+  'pages.businessOpportunity.getStarted': 'Commencez Aujourd\'hui',
+  'pages.businessOpportunity.whyChoose': 'Pourquoi Choisir Cette Opportunité Commerciale',
+  'pages.businessOpportunity.howWorks': 'Comment Fonctionne l\'Entreprise',
+  'pages.businessOpportunity.successStories': 'Histoires de Réussite',
+  'pages.businessOpportunity.readyToStart': 'Prêt à Démarrer Votre Entreprise Kangen Water?',
+  'pages.businessOpportunity.readyToStartText': 'Rejoignez des milliers de distributeurs à succès dans le monde entier et commencez à construire votre entreprise dès aujourd\'hui.',
+  'pages.businessOpportunity.becomeDistributor': 'Devenir Distributeur',
+  'pages.businessOpportunity.faqTitle': 'Questions Fréquemment Posées',
 };
 
 // Get translations based on selected language
@@ -248,6 +318,19 @@ const getTranslations = (language: Language) => {
 // Provider component
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('en');
+
+  // Load language preference from local storage on initial render
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('language') as Language;
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+      setLanguage(savedLanguage);
+    }
+  }, []);
+
+  // Save language preference to local storage when it changes
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
 
   // Translation function
   const t = (key: string): string => {
