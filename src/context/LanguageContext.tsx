@@ -52,6 +52,9 @@ const enTranslations: Record<string, string> = {
   'products.description2': 'The product is designed with state-of-the-art technology to provide you with the healthiest water possible. It features a self-cleaning system and delivers various types of water for different uses in your daily life.',
   'products.warranty': 'Quality Guarantee',
   'products.warrantyDescription': 'Each unit comes with a 5-year manufacturer warranty',
+  'products.addToCart': 'Add to Cart',
+  'products.downloadBrochure': 'Download Brochure',
+  'products.inStock': 'In Stock',
   
   // Benefits section
   'benefits.tag': 'Discover The Advantages',
@@ -160,6 +163,35 @@ const enTranslations: Record<string, string> = {
   'pages.businessOpportunity.readyToStartText': 'Join thousands of successful distributors worldwide and start building your business today.',
   'pages.businessOpportunity.becomeDistributor': 'Become a Distributor',
   'pages.businessOpportunity.faqTitle': 'Frequently Asked Questions',
+  
+  // About Matthieu page
+  'pages.about.title': 'Meet',
+  'pages.about.titleHighlight': 'Matthieu Couture',
+  'pages.about.subtitle': 'With years of experience and a passion for health and wellness, Matthieu is dedicated to helping you understand the benefits of Kangen Water and find the perfect solution for your needs.',
+  'pages.about.tag': 'Your Kangen Water Guide',
+  'pages.about.connect': 'Connect with Matthieu',
+  'pages.about.callDirectly': 'Call Directly: 647-884-4427',
+  'pages.about.specialist': 'Kangen Water Specialist',
+  'pages.about.location': 'Toronto / Montreal, Canada',
+  'pages.about.helpTitle': 'How Matthieu Will',
+  'pages.about.helpTitleHighlight': 'Help You',
+  'pages.about.helpDescription': 'From answering your questions to helping you select the right Kangen Water machine, Matthieu is committed to providing exceptional service at every step.',
+  'pages.about.questions': 'Answer All Your Questions',
+  'pages.about.questionsText': 'Matthieu will take the time to address all your questions and concerns about Kangen Water technology, benefits, and how it can help improve your health and wellbeing.',
+  'pages.about.guidance': 'Product Selection Guidance',
+  'pages.about.guidanceText': 'Get personalized recommendations based on your specific needs, budget, and lifestyle. Matthieu will help you choose the perfect Kangen Water system for your home or business.',
+  'pages.about.support': 'Ongoing Support',
+  'pages.about.supportText': 'Your journey doesn\'t end after purchase. Matthieu provides continued support, ensuring you get the most out of your Kangen Water system and addressing any questions that arise.',
+  'pages.about.expertTitle': 'Your Trusted',
+  'pages.about.expertTitleHighlight': 'Kangen Water Expert',
+  'pages.about.expertDescription': 'Matthieu\'s commitment to health, wellness, and exceptional customer service makes him the ideal partner for your Kangen Water journey.',
+  'pages.about.knowledge': 'Extensive knowledge of Kangen Water technology and benefits',
+  'pages.about.personalized': 'Personalized consultation tailored to your specific needs',
+  'pages.about.prompt': 'Prompt and helpful responses to all inquiries',
+  'pages.about.bilingual': 'Bilingual support in English and French',
+  'pages.about.serving': 'Serving clients throughout Toronto, Montreal, and beyond',
+  'pages.about.readTestimonials': 'Read Client Testimonials',
+  'pages.about.supportSection': 'Personalized Support',
 };
 
 // French translations
@@ -200,6 +232,9 @@ const frTranslations: Record<string, string> = {
   'products.description2': 'Le produit est conçu avec une technologie de pointe pour vous fournir l\'eau la plus saine possible. Il dispose d\'un système d\'auto-nettoyage et fournit différents types d\'eau pour différentes utilisations dans votre vie quotidienne.',
   'products.warranty': 'Garantie de Qualité',
   'products.warrantyDescription': 'Chaque unité est fournie avec une garantie fabricant de 5 ans',
+  'products.addToCart': 'Ajouter au Panier',
+  'products.downloadBrochure': 'Télécharger la Brochure',
+  'products.inStock': 'En Stock',
   
   // Benefits section
   'benefits.tag': 'Découvrez Les Avantages',
@@ -308,6 +343,35 @@ const frTranslations: Record<string, string> = {
   'pages.businessOpportunity.readyToStartText': 'Rejoignez des milliers de distributeurs à succès dans le monde entier et commencez à construire votre entreprise dès aujourd\'hui.',
   'pages.businessOpportunity.becomeDistributor': 'Devenir Distributeur',
   'pages.businessOpportunity.faqTitle': 'Questions Fréquemment Posées',
+  
+  // About Matthieu page
+  'pages.about.title': 'Rencontrez',
+  'pages.about.titleHighlight': 'Matthieu Couture',
+  'pages.about.subtitle': 'Avec des années d\'expérience et une passion pour la santé et le bien-être, Matthieu se consacre à vous aider à comprendre les avantages de Kangen Water et à trouver la solution parfaite pour vos besoins.',
+  'pages.about.tag': 'Votre Guide Kangen Water',
+  'pages.about.connect': 'Contactez Matthieu',
+  'pages.about.callDirectly': 'Appelez Directement: 647-884-4427',
+  'pages.about.specialist': 'Spécialiste Kangen Water',
+  'pages.about.location': 'Toronto / Montréal, Canada',
+  'pages.about.helpTitle': 'Comment Matthieu Va',
+  'pages.about.helpTitleHighlight': 'Vous Aider',
+  'pages.about.helpDescription': 'De répondre à vos questions à vous aider à sélectionner la bonne machine Kangen Water, Matthieu s\'engage à fournir un service exceptionnel à chaque étape.',
+  'pages.about.questions': 'Répondre à Toutes Vos Questions',
+  'pages.about.questionsText': 'Matthieu prendra le temps de répondre à toutes vos questions et préoccupations concernant la technologie Kangen Water, ses avantages et comment elle peut améliorer votre santé et votre bien-être.',
+  'pages.about.guidance': 'Conseils pour la Sélection de Produits',
+  'pages.about.guidanceText': 'Obtenez des recommandations personnalisées basées sur vos besoins spécifiques, votre budget et votre style de vie. Matthieu vous aidera à choisir le système Kangen Water parfait pour votre maison ou votre entreprise.',
+  'pages.about.support': 'Support Continu',
+  'pages.about.supportText': 'Votre parcours ne s\'arrête pas après l\'achat. Matthieu fournit un support continu, vous assurant de tirer le meilleur parti de votre système Kangen Water et répondant à toutes les questions qui surgissent.',
+  'pages.about.expertTitle': 'Votre Expert',
+  'pages.about.expertTitleHighlight': 'Kangen Water de Confiance',
+  'pages.about.expertDescription': 'L\'engagement de Matthieu envers la santé, le bien-être et un service client exceptionnel fait de lui le partenaire idéal pour votre parcours Kangen Water.',
+  'pages.about.knowledge': 'Connaissance approfondie de la technologie Kangen Water et de ses avantages',
+  'pages.about.personalized': 'Consultation personnalisée adaptée à vos besoins spécifiques',
+  'pages.about.prompt': 'Réponses rapides et utiles à toutes les demandes',
+  'pages.about.bilingual': 'Support bilingue en anglais et en français',
+  'pages.about.serving': 'Service aux clients dans tout Toronto, Montréal et au-delà',
+  'pages.about.readTestimonials': 'Lire les Témoignages des Clients',
+  'pages.about.supportSection': 'Support Personnalisé',
 };
 
 // Get translations based on selected language

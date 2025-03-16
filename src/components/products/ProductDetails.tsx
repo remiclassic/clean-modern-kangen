@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { 
-  Check, 
+import {
+  Check,
   DownloadCloud
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -17,26 +17,26 @@ interface ProductDetailsProps {
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => {
   const { t } = useLanguage();
-
+  
   return (
     <div className="p-4 max-h-[70vh] overflow-y-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <div className="bg-gray-100 rounded-lg p-4 h-64 flex items-center justify-center">
-            <img
-              src={product.image}
-              alt={product.title}
+            <img 
+              src={product.image} 
+              alt={product.title} 
               className="max-w-full max-h-full object-contain"
             />
           </div>
-          {/* Optional gallery rendering only if it exists */}
+          
           {product.gallery && (
             <div className="mt-4 grid grid-cols-3 gap-2">
               {product.gallery.map((img, i) => (
                 <div key={i} className="bg-gray-100 p-2 rounded-lg h-20 flex items-center justify-center">
-                  <img
-                    src={img}
-                    alt={`${product.title} gallery ${i + 1}`}
+                  <img 
+                    src={img} 
+                    alt={`${product.title} gallery ${i + 1}`} 
                     className="max-w-full max-h-full object-contain"
                   />
                 </div>
@@ -49,7 +49,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => 
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xl font-bold">{product.price}</h3>
             <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-              In Stock
+              {t('products.inStock')}
             </Badge>
           </div>
           
@@ -67,7 +67,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => 
             </ul>
           </div>
           
-          <p className="text-gray-700 mb-6">{t('products.description2')}</p>
+          <p className="text-gray-700 mb-6">
+            {t('products.description2')}
+          </p>
           
           <div className="bg-gray-50 p-4 rounded-lg mb-6">
             <h4 className="font-medium mb-2">{t('products.warranty')}</h4>
@@ -76,11 +78,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => 
           
           <div className="flex flex-col space-y-2">
             <Button className="w-full">
-              Add to Cart
+              {t('products.addToCart')}
             </Button>
             <Button variant="outline" className="w-full flex items-center justify-center">
               <DownloadCloud className="h-4 w-4 mr-2" />
-              Download Brochure
+              {t('products.downloadBrochure')}
             </Button>
           </div>
         </div>

@@ -22,25 +22,25 @@ const AboutMatthieu: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up">
               <span className="inline-block py-1 px-3 bg-kangen-100 text-kangen-700 rounded-full text-sm font-medium mb-4">
-                Your Kangen Water Guide
+                {t('pages.about.tag')}
               </span>
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                Meet <span className="gradient-text">Matthieu Couture</span>
+                {t('pages.about.title')} <span className="gradient-text">{t('pages.about.titleHighlight')}</span>
               </h1>
               <p className="text-lg text-gray-700 mb-8">
-                With years of experience and a passion for health and wellness, Matthieu is dedicated to helping you understand the benefits of Kangen Water and find the perfect solution for your needs.
+                {t('pages.about.subtitle')}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/#contact">
                   <CustomButton size="lg">
-                    Connect with Matthieu
+                    {t('pages.about.connect')}
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </CustomButton>
                 </Link>
                 <a href="tel:647-884-4427">
                   <CustomButton variant="secondary" size="lg">
-                    Call Directly: 647-884-4427
+                    {t('pages.about.callDirectly')}
                   </CustomButton>
                 </a>
               </div>
@@ -55,8 +55,8 @@ const AboutMatthieu: React.FC = () => {
                 />
                 <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-5 rounded-lg shadow-lg">
                   <h3 className="font-semibold text-lg mb-1">Matthieu Couture</h3>
-                  <p className="text-kangen-700 font-medium">Kangen Water Specialist</p>
-                  <p className="text-gray-600 mt-1">Toronto / Montreal, Canada</p>
+                  <p className="text-kangen-700 font-medium">{t('pages.about.specialist')}</p>
+                  <p className="text-gray-600 mt-1">{t('pages.about.location')}</p>
                 </div>
               </div>
             </div>
@@ -68,13 +68,13 @@ const AboutMatthieu: React.FC = () => {
           <div className="container mx-auto px-4 md:px-6">
             <div className="text-center mb-12">
               <span className="inline-block py-1 px-3 bg-kangen-100 text-kangen-700 rounded-full text-sm font-medium mb-4">
-                Personalized Support
+                {t('pages.about.supportSection')}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                How Matthieu Will <span className="gradient-text">Help You</span>
+                {t('pages.about.helpTitle')} <span className="gradient-text">{t('pages.about.helpTitleHighlight')}</span>
               </h2>
               <p className="max-w-3xl mx-auto text-lg text-gray-700">
-                From answering your questions to helping you select the right Kangen Water machine, Matthieu is committed to providing exceptional service at every step.
+                {t('pages.about.helpDescription')}
               </p>
             </div>
             
@@ -84,9 +84,9 @@ const AboutMatthieu: React.FC = () => {
                   <div className="w-12 h-12 bg-kangen-100 rounded-full flex items-center justify-center text-kangen-700 mb-4">
                     <MessageCircle className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Answer All Your Questions</h3>
+                  <h3 className="text-xl font-semibold mb-3">{t('pages.about.questions')}</h3>
                   <p className="text-gray-700">
-                    Matthieu will take the time to address all your questions and concerns about Kangen Water technology, benefits, and how it can help improve your health and wellbeing.
+                    {t('pages.about.questionsText')}
                   </p>
                 </CardContent>
               </Card>
@@ -96,9 +96,9 @@ const AboutMatthieu: React.FC = () => {
                   <div className="w-12 h-12 bg-kangen-100 rounded-full flex items-center justify-center text-kangen-700 mb-4">
                     <HeartHandshake className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Product Selection Guidance</h3>
+                  <h3 className="text-xl font-semibold mb-3">{t('pages.about.guidance')}</h3>
                   <p className="text-gray-700">
-                    Get personalized recommendations based on your specific needs, budget, and lifestyle. Matthieu will help you choose the perfect Kangen Water system for your home or business.
+                    {t('pages.about.guidanceText')}
                   </p>
                 </CardContent>
               </Card>
@@ -108,9 +108,9 @@ const AboutMatthieu: React.FC = () => {
                   <div className="w-12 h-12 bg-kangen-100 rounded-full flex items-center justify-center text-kangen-700 mb-4">
                     <Award className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Ongoing Support</h3>
+                  <h3 className="text-xl font-semibold mb-3">{t('pages.about.support')}</h3>
                   <p className="text-gray-700">
-                    Your journey doesn't end after purchase. Matthieu provides continued support, ensuring you get the most out of your Kangen Water system and addressing any questions that arise.
+                    {t('pages.about.supportText')}
                   </p>
                 </CardContent>
               </Card>
@@ -124,41 +124,41 @@ const AboutMatthieu: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1 animate-fade-in-up">
                 <span className="inline-block py-1 px-3 bg-kangen-100 text-kangen-700 rounded-full text-sm font-medium mb-4">
-                  Why Choose Matthieu
+                  {t('pages.about.expertTitle')}
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Your Trusted <span className="gradient-text">Kangen Water Expert</span>
+                  {t('pages.about.expertTitle')} <span className="gradient-text">{t('pages.about.expertTitleHighlight')}</span>
                 </h2>
                 <p className="text-lg text-gray-700 mb-8">
-                  Matthieu's commitment to health, wellness, and exceptional customer service makes him the ideal partner for your Kangen Water journey.
+                  {t('pages.about.expertDescription')}
                 </p>
                 
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="text-kangen-600 flex-shrink-0 mt-1 w-5 h-5" />
-                    <span className="text-gray-700">Extensive knowledge of Kangen Water technology and benefits</span>
+                    <span className="text-gray-700">{t('pages.about.knowledge')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="text-kangen-600 flex-shrink-0 mt-1 w-5 h-5" />
-                    <span className="text-gray-700">Personalized consultation tailored to your specific needs</span>
+                    <span className="text-gray-700">{t('pages.about.personalized')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="text-kangen-600 flex-shrink-0 mt-1 w-5 h-5" />
-                    <span className="text-gray-700">Prompt and helpful responses to all inquiries</span>
+                    <span className="text-gray-700">{t('pages.about.prompt')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="text-kangen-600 flex-shrink-0 mt-1 w-5 h-5" />
-                    <span className="text-gray-700">Bilingual support in English and French</span>
+                    <span className="text-gray-700">{t('pages.about.bilingual')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="text-kangen-600 flex-shrink-0 mt-1 w-5 h-5" />
-                    <span className="text-gray-700">Serving clients throughout Toronto, Montreal, and beyond</span>
+                    <span className="text-gray-700">{t('pages.about.serving')}</span>
                   </li>
                 </ul>
                 
                 <Link to="/testimonials">
                   <CustomButton variant="outline" size="lg">
-                    Read Client Testimonials
+                    {t('pages.about.readTestimonials')}
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </CustomButton>
                 </Link>
