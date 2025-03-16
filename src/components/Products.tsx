@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { ProductCard } from './ui/ProductCard';
 import { CustomButton } from './ui/Button';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './ui/alert-dialog';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 
 const products = [
   {
@@ -31,6 +33,37 @@ const products = [
     features: ['5 Platinum-Coated Plates', 'LCD Display', 'Energy Saving Mode'],
     price: 'From $2,980',
     videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM'
+  }
+];
+
+// Additional products that will be shown when expanded
+const additionalProducts = [
+  {
+    id: 4,
+    title: 'SD501 Platinum',
+    image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05',
+    description: 'A luxurious upgrade to our flagship model with premium design elements.',
+    features: ['7 Solid Platinum-Coated Plates', 'Premium Design', 'Auto-Filter Replacement Sensor'],
+    price: 'From $4,280',
+    videoUrl: 'https://www.youtube.com/embed/gjvZX-ufm5E'
+  },
+  {
+    id: 5,
+    title: 'JRIV',
+    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470',
+    description: 'Our most portable unit, perfect for travel or small living spaces.',
+    features: ['3 Platinum-Coated Plates', 'Compact & Portable', 'Single Water Type'],
+    price: 'From $1,980',
+    videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM'
+  },
+  {
+    id: 6,
+    title: 'Super 501',
+    image: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff',
+    description: 'Commercial-grade water ionizer designed for high-volume business applications.',
+    features: ['12 Platinum-Coated Plates', 'High-Volume Output', 'Commercial Grade Components'],
+    price: 'From $5,980',
+    videoUrl: 'https://www.youtube.com/embed/XmVUg3ZviGE'
   }
 ];
 
@@ -71,23 +104,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => 
 
 const Products: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
   
   const handleLearnMore = (product: typeof products[0]) => {
     setSelectedProduct(product);
   };
   
   const handleViewAllProducts = () => {
-    // Scroll to products section and show a brief highlight animation
-    const productsSection = document.getElementById('products');
-    if (productsSection) {
-      productsSection.scrollIntoView({ behavior: 'smooth' });
-      
-      // Add a highlight class temporarily
-      productsSection.classList.add('highlight-section');
-      setTimeout(() => {
-        productsSection.classList.remove('highlight-section');
-      }, 1000);
-    }
+    setIsExpanded(!isExpanded);
   };
 
   return (
@@ -145,11 +169,69 @@ const Products: React.FC = () => {
           ))}
         </div>
         
-        <div className="text-center">
-          <CustomButton variant="secondary" size="lg" onClick={handleViewAllProducts}>
-            View All Products
-          </CustomButton>
-        </div>
+        <Collapsible
+          open={isExpanded}
+          onOpenChange={setIsExpanded}
+          className="w-full"
+        >
+          <CollapsibleContent className="overflow-hidden transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 mt-8 pt-8 border-t border-gray-200">
+              {additionalProducts.map((product) => (
+                <div key={product.id}>
+                  <ProductCard
+                    title={product.title}
+                    image={product.image}
+                    description={product.description}
+                    features={product.features}
+                    price={product.price}
+                    className="animate-fade-in-up"
+                  />
+                  <div className="mt-4">
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <CustomButton 
+                          variant="outline" 
+                          size="sm" 
+                          className="w-full"
+                          onClick={() => handleLearnMore(product)}
+                        >
+                          Learn More
+                        </CustomButton>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent className="sm:max-w-[600px]">
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>{product.title} - Kangen Water System</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Get to know our premium {product.title} water ionizer.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Close</AlertDialogCancel>
+                          <AlertDialogAction>Request Info</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CollapsibleContent>
+          
+          <div className="text-center">
+            <CollapsibleTrigger asChild>
+              <CustomButton 
+                variant="secondary" 
+                size="lg" 
+                onClick={handleViewAllProducts}
+                className="flex items-center gap-2"
+              >
+                {isExpanded ? 'Hide Products' : 'View All Products'}
+                {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              </CustomButton>
+            </CollapsibleTrigger>
+          </div>
+        </Collapsible>
       </div>
     </section>
   );
