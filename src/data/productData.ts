@@ -1,4 +1,3 @@
-
 export interface Product {
   id: number;
   title: string;
@@ -24,7 +23,12 @@ export const featuredProducts: Product[] = [
     priceValue: 4980,
     videoUrl: 'https://www.youtube.com/embed/XmVUg3ZviGE',
     isBestSeller: true,
-    category: 'premium'
+    category: 'premium',
+    gallery: [
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470',
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05'
+    ]
   },
   {
     id: 2,
@@ -36,7 +40,12 @@ export const featuredProducts: Product[] = [
     priceValue: 3980,
     videoUrl: 'https://www.youtube.com/embed/gjvZX-ufm5E',
     isBestSeller: false,
-    category: 'premium'
+    category: 'premium',
+    gallery: [
+      'https://images.unsplash.com/photo-1426604966848-d7adac402bff',
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470'
+    ]
   },
   {
     id: 3,
@@ -48,7 +57,12 @@ export const featuredProducts: Product[] = [
     priceValue: 2980,
     videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM',
     isBestSeller: false,
-    category: 'standard'
+    category: 'standard',
+    gallery: [
+      'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
+      'https://images.unsplash.com/photo-1504893524553-b855bce32c67',
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05'
+    ]
   }
 ];
 
@@ -63,7 +77,12 @@ export const additionalProducts: Product[] = [
     priceValue: 4280,
     videoUrl: 'https://www.youtube.com/embed/gjvZX-ufm5E',
     isBestSeller: false,
-    category: 'premium'
+    category: 'premium',
+    gallery: [
+      'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
+      'https://images.unsplash.com/photo-1504893524553-b855bce32c67',
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb'
+    ]
   },
   {
     id: 5,
@@ -75,7 +94,12 @@ export const additionalProducts: Product[] = [
     priceValue: 1980,
     videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM',
     isBestSeller: false,
-    category: 'compact'
+    category: 'compact',
+    gallery: [
+      'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05',
+      'https://images.unsplash.com/photo-1426604966848-d7adac402bff'
+    ]
   },
   {
     id: 6,
@@ -86,8 +110,13 @@ export const additionalProducts: Product[] = [
     price: 'From $5,980',
     priceValue: 5980,
     videoUrl: 'https://www.youtube.com/embed/XmVUg3ZviGE',
-    isBestSeller: false,
-    category: 'premium'
+    isBestSeller: true,
+    category: 'premium',
+    gallery: [
+      'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
+      'https://images.unsplash.com/photo-1504893524553-b855bce32c67',
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470'
+    ]
   }
 ];
 

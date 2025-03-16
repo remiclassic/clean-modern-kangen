@@ -15,20 +15,36 @@ const Products: React.FC = () => {
     setSelectedProduct(product);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.1
+      }
+    }
+  };
+
   return (
-    <section id="products" className="bg-kangen-50/80 py-20 md:py-32">
+    <section id="products" className="bg-gradient-to-b from-white to-kangen-50/50 py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <span className="inline-block py-1 px-3 bg-kangen-100 text-kangen-700 rounded-full text-sm font-medium mb-4">
             {t('products.tag')}
           </span>
           <h2 className="section-title">{t('products.title')} <span className="gradient-text">{t('products.titleHighlight')}</span></h2>
-          <p className="section-subtitle">
+          <p className="section-subtitle max-w-4xl">
             {t('products.description')}
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {allProducts.map((product, index) => (
             <AlertDialog key={product.id}>
               <AnimatedProductCard 
@@ -36,22 +52,22 @@ const Products: React.FC = () => {
                 index={index}
                 handleLearnMore={handleLearnMore}
               />
-              <AlertDialogContent className="sm:max-w-[600px]">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>{product.title} - {t('products.dialogTitle')}</AlertDialogTitle>
+              <AlertDialogContent className="sm:max-w-[800px] p-0 overflow-hidden">
+                <AlertDialogHeader className="p-6 pb-0">
+                  <AlertDialogTitle className="text-2xl">{product.title} - {t('products.dialogTitle')}</AlertDialogTitle>
                   <AlertDialogDescription>
                     {t('products.dialogDescription').replace('product', product.title)}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
-                <AlertDialogFooter>
+                <AlertDialogFooter className="p-4 border-t bg-gray-50">
                   <AlertDialogCancel>{t('products.close')}</AlertDialogCancel>
-                  <AlertDialogAction>{t('products.requestInfo')}</AlertDialogAction>
+                  <AlertDialogAction className="bg-kangen-600 hover:bg-kangen-700">{t('products.requestInfo')}</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
