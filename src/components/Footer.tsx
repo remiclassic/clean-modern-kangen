@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { CustomButton } from './ui/Button';
+import { CustomButton } from './ui/custom-button';
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

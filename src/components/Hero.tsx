@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { CustomButton } from './ui/Button';
+import { CustomButton } from './ui/custom-button';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 

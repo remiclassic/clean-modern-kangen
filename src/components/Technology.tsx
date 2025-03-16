@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CustomButton } from './ui/Button';
+import { CustomButton } from './ui/custom-button';
 
 const Technology: React.FC = () => {
   return (

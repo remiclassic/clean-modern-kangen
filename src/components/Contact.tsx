@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { CustomButton } from './ui/Button';
+import { CustomButton } from './ui/custom-button';
 import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 
 const Contact: React.FC = () => {
