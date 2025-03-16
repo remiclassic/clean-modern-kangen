@@ -2,6 +2,7 @@
 import React from 'react';
 import { CustomButton } from './ui/Button';
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
@@ -56,19 +57,16 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold mb-6">Resources</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">FAQs</a>
+                <Link to="/faqs" className="text-gray-400 hover:text-white transition-colors duration-200">FAQs</Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">User Manual</a>
+                <Link to="/user-manual" className="text-gray-400 hover:text-white transition-colors duration-200">User Manual</Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Water Research</a>
+                <Link to="/water-research" className="text-gray-400 hover:text-white transition-colors duration-200">Water Research</Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Testimonials</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Blog</a>
+                <Link to="/testimonials" className="text-gray-400 hover:text-white transition-colors duration-200">Testimonials</Link>
               </li>
             </ul>
           </div>
