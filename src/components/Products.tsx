@@ -2,9 +2,10 @@
 import React, { useState } from 'react';
 import { ProductCard } from './ui/ProductCard';
 import { CustomButton } from './ui/Button';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, Award } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './ui/alert-dialog';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
+import { motion } from 'framer-motion';
 
 const products = [
   {
@@ -14,7 +15,8 @@ const products = [
     description: 'Our premium model with the most plate capability for maximum antioxidant potential.',
     features: ['8 Platinum-Coated Plates', '5 Water Settings', 'Voice-Guided Operation'],
     price: 'From $4,980',
-    videoUrl: 'https://www.youtube.com/embed/XmVUg3ZviGE'
+    videoUrl: 'https://www.youtube.com/embed/XmVUg3ZviGE',
+    isBestSeller: true
   },
   {
     id: 2,
@@ -23,7 +25,8 @@ const products = [
     description: 'The flagship model that offers exceptional performance for families and businesses.',
     features: ['7 Solid Platinum-Coated Plates', 'LCD Display Panel', 'Automatic Cleaning'],
     price: 'From $3,980',
-    videoUrl: 'https://www.youtube.com/embed/gjvZX-ufm5E'
+    videoUrl: 'https://www.youtube.com/embed/gjvZX-ufm5E',
+    isBestSeller: false
   },
   {
     id: 3,
@@ -32,7 +35,8 @@ const products = [
     description: 'Compact design for smaller spaces while delivering exceptional performance.',
     features: ['5 Platinum-Coated Plates', 'LCD Display', 'Energy Saving Mode'],
     price: 'From $2,980',
-    videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM'
+    videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM',
+    isBestSeller: false
   }
 ];
 
@@ -45,7 +49,8 @@ const additionalProducts = [
     description: 'A luxurious upgrade to our flagship model with premium design elements.',
     features: ['7 Solid Platinum-Coated Plates', 'Premium Design', 'Auto-Filter Replacement Sensor'],
     price: 'From $4,280',
-    videoUrl: 'https://www.youtube.com/embed/gjvZX-ufm5E'
+    videoUrl: 'https://www.youtube.com/embed/gjvZX-ufm5E',
+    isBestSeller: false
   },
   {
     id: 5,
@@ -54,7 +59,8 @@ const additionalProducts = [
     description: 'Our most portable unit, perfect for travel or small living spaces.',
     features: ['3 Platinum-Coated Plates', 'Compact & Portable', 'Single Water Type'],
     price: 'From $1,980',
-    videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM'
+    videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM',
+    isBestSeller: false
   },
   {
     id: 6,
@@ -63,12 +69,13 @@ const additionalProducts = [
     description: 'Commercial-grade water ionizer designed for high-volume business applications.',
     features: ['12 Platinum-Coated Plates', 'High-Volume Output', 'Commercial Grade Components'],
     price: 'From $5,980',
-    videoUrl: 'https://www.youtube.com/embed/XmVUg3ZviGE'
+    videoUrl: 'https://www.youtube.com/embed/XmVUg3ZviGE',
+    isBestSeller: false
   }
 ];
 
 interface ProductDetailsProps {
-  product: typeof products[0];
+  product: (typeof products[0] | typeof additionalProducts[0]);
   onClose: () => void;
 }
 
@@ -103,15 +110,28 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => 
 );
 
 const Products: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<(typeof products[0] | typeof additionalProducts[0]) | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   
-  const handleLearnMore = (product: typeof products[0]) => {
+  const handleLearnMore = (product: typeof products[0] | typeof additionalProducts[0]) => {
     setSelectedProduct(product);
   };
   
   const handleViewAllProducts = () => {
     setIsExpanded(!isExpanded);
+  };
+
+  const productVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    })
   };
 
   return (
@@ -128,15 +148,29 @@ const Products: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {products.map((product) => (
-            <div key={product.id}>
+          {products.map((product, index) => (
+            <motion.div 
+              key={product.id}
+              custom={index}
+              initial="hidden"
+              animate="visible"
+              variants={productVariants}
+              className={product.isBestSeller ? "transform scale-105 relative z-10" : ""}
+            >
+              {product.isBestSeller && (
+                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-kangen-500 to-kangen-700 text-white py-1 px-3 rounded-full flex items-center gap-1 shadow-md z-20 transform rotate-3">
+                  <Award className="h-4 w-4" />
+                  <span className="text-sm font-medium">Best Seller</span>
+                </div>
+              )}
+              
               <ProductCard
                 title={product.title}
                 image={product.image}
                 description={product.description}
                 features={product.features}
                 price={product.price}
-                className="animate-fade-in-up"
+                className={`animate-fade-in-up ${product.isBestSeller ? "ring-2 ring-kangen-500 shadow-lg" : ""}`}
               />
               <div className="mt-4">
                 <AlertDialog>
@@ -165,7 +199,7 @@ const Products: React.FC = () => {
                   </AlertDialogContent>
                 </AlertDialog>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         
@@ -174,10 +208,24 @@ const Products: React.FC = () => {
           onOpenChange={setIsExpanded}
           className="w-full"
         >
-          <CollapsibleContent className="overflow-hidden transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 mt-8 pt-8 border-t border-gray-200">
-              {additionalProducts.map((product) => (
-                <div key={product.id}>
+          <CollapsibleContent className="overflow-hidden transition-all duration-500 ease-in-out">
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 mt-8 pt-8 border-t border-gray-200"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ 
+                opacity: isExpanded ? 1 : 0, 
+                height: isExpanded ? "auto" : 0,
+                transition: { duration: 0.5, ease: "easeInOut" }
+              }}
+            >
+              {additionalProducts.map((product, index) => (
+                <motion.div 
+                  key={product.id}
+                  custom={index}
+                  initial="hidden"
+                  animate={isExpanded ? "visible" : "hidden"}
+                  variants={productVariants}
+                >
                   <ProductCard
                     title={product.title}
                     image={product.image}
@@ -213,9 +261,9 @@ const Products: React.FC = () => {
                       </AlertDialogContent>
                     </AlertDialog>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </CollapsibleContent>
           
           <div className="text-center">
@@ -224,10 +272,15 @@ const Products: React.FC = () => {
                 variant="secondary" 
                 size="lg" 
                 onClick={handleViewAllProducts}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 transition-all duration-300 hover:bg-kangen-100"
               >
                 {isExpanded ? 'Hide Products' : 'View All Products'}
-                {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                <motion.div
+                  animate={{ rotate: isExpanded ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ChevronDown className="h-4 w-4" />
+                </motion.div>
               </CustomButton>
             </CollapsibleTrigger>
           </div>
