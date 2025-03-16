@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 // Define supported languages
@@ -67,6 +66,19 @@ const enTranslations: Record<string, string> = {
   'benefits.step1': 'Start with drinking 8-10 glasses of Kangen Water® daily',
   'benefits.step2': 'Use different pH levels for specific applications around your home',
   'benefits.step3': 'Experience the difference in how you feel, look, and perform',
+  // Benefits cards
+  'benefits.superiorHydration': 'Superior Hydration',
+  'benefits.superiorHydrationText': 'Micro-clustered water molecules penetrate cells more effectively for enhanced hydration.',
+  'benefits.antioxidant': 'Antioxidant Power',
+  'benefits.antioxidantText': 'Rich in molecular hydrogen, a powerful antioxidant that helps neutralize harmful free radicals.',
+  'benefits.phBalance': 'pH Balance',
+  'benefits.phBalanceText': 'Multiple pH settings allow you to choose the perfect alkalinity level for your specific needs.',
+  'benefits.enhancedEnergy': 'Enhanced Energy',
+  'benefits.enhancedEnergyText': 'Many users report increased energy levels and improved overall vitality with regular consumption.',
+  'benefits.optimalHealth': 'Optimal Health',
+  'benefits.optimalHealthText': 'Supports your body\'s natural functions and helps maintain proper pH balance.',
+  'benefits.improvedTaste': 'Improved Taste',
+  'benefits.improvedTasteText': 'Experience the clean, refreshing taste of properly filtered and ionized water.',
   
   // Technology section
   'technology.tag': 'Revolutionary Innovation',
@@ -247,6 +259,19 @@ const frTranslations: Record<string, string> = {
   'benefits.step1': 'Commencez par boire 8-10 verres d\'eau Kangen® par jour',
   'benefits.step2': 'Utilisez différents niveaux de pH pour des applications spécifiques dans votre maison',
   'benefits.step3': 'Ressentez la différence dans votre sensation, apparence et performance',
+  // Benefits cards
+  'benefits.superiorHydration': 'Hydratation Supérieure',
+  'benefits.superiorHydrationText': 'Les molécules d\'eau micro-groupées pénètrent plus efficacement dans les cellules pour une hydratation améliorée.',
+  'benefits.antioxidant': 'Pouvoir Antioxydant',
+  'benefits.antioxidantText': 'Riche en hydrogène moléculaire, un puissant antioxydant qui aide à neutraliser les radicaux libres nocifs.',
+  'benefits.phBalance': 'Équilibre du pH',
+  'benefits.phBalanceText': 'Plusieurs réglages de pH vous permettent de choisir le niveau d\'alcalinité parfait pour vos besoins spécifiques.',
+  'benefits.enhancedEnergy': 'Énergie Améliorée',
+  'benefits.enhancedEnergyText': 'De nombreux utilisateurs rapportent une augmentation des niveaux d\'énergie et une amélioration de la vitalité globale avec une consommation régulière.',
+  'benefits.optimalHealth': 'Santé Optimale',
+  'benefits.optimalHealthText': 'Soutient les fonctions naturelles de votre corps et aide à maintenir un équilibre de pH approprié.',
+  'benefits.improvedTaste': 'Goût Amélioré',
+  'benefits.improvedTasteText': 'Découvrez le goût propre et rafraîchissant de l\'eau correctement filtrée et ionisée.',
   
   // Technology section
   'technology.tag': 'Innovation Révolutionnaire',

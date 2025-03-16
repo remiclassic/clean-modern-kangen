@@ -4,57 +4,60 @@ import { motion } from 'framer-motion';
 import { FeatureCard } from './ui/FeatureCard';
 import { Droplet, Heart, Zap, RefreshCw, Shield, Sparkles } from 'lucide-react';
 import { staggerContainer, staggerItems } from '@/utils/animations';
-
-const benefits = [
-  {
-    id: 1,
-    title: 'Superior Hydration',
-    description: 'Micro-clustered water molecules penetrate cells more effectively for enhanced hydration.',
-    icon: <Droplet className="w-6 h-6" />
-  },
-  {
-    id: 2,
-    title: 'Antioxidant Power',
-    description: 'Rich in molecular hydrogen, a powerful antioxidant that helps neutralize harmful free radicals.',
-    icon: <Shield className="w-6 h-6" />
-  },
-  {
-    id: 3,
-    title: 'pH Balance',
-    description: 'Multiple pH settings allow you to choose the perfect alkalinity level for your specific needs.',
-    icon: <RefreshCw className="w-6 h-6" />
-  },
-  {
-    id: 4,
-    title: 'Enhanced Energy',
-    description: 'Many users report increased energy levels and improved overall vitality with regular consumption.',
-    icon: <Zap className="w-6 h-6" />
-  },
-  {
-    id: 5,
-    title: 'Optimal Health',
-    description: 'Supports your body\'s natural functions and helps maintain proper pH balance.',
-    icon: <Heart className="w-6 h-6" />
-  },
-  {
-    id: 6,
-    title: 'Improved Taste',
-    description: 'Experience the clean, refreshing taste of properly filtered and ionized water.',
-    icon: <Sparkles className="w-6 h-6" />
-  }
-];
+import { useLanguage } from '@/context/LanguageContext';
 
 const Benefits: React.FC = () => {
+  const { t } = useLanguage();
+  
+  const benefits = [
+    {
+      id: 1,
+      title: t('benefits.superiorHydration'),
+      description: t('benefits.superiorHydrationText'),
+      icon: <Droplet className="w-6 h-6" />
+    },
+    {
+      id: 2,
+      title: t('benefits.antioxidant'),
+      description: t('benefits.antioxidantText'),
+      icon: <Shield className="w-6 h-6" />
+    },
+    {
+      id: 3,
+      title: t('benefits.phBalance'),
+      description: t('benefits.phBalanceText'),
+      icon: <RefreshCw className="w-6 h-6" />
+    },
+    {
+      id: 4,
+      title: t('benefits.enhancedEnergy'),
+      description: t('benefits.enhancedEnergyText'),
+      icon: <Zap className="w-6 h-6" />
+    },
+    {
+      id: 5,
+      title: t('benefits.optimalHealth'),
+      description: t('benefits.optimalHealthText'),
+      icon: <Heart className="w-6 h-6" />
+    },
+    {
+      id: 6,
+      title: t('benefits.improvedTaste'),
+      description: t('benefits.improvedTasteText'),
+      icon: <Sparkles className="w-6 h-6" />
+    }
+  ];
+
   return (
     <section id="benefits" className="section-padding">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <span className="inline-block py-1 px-3 bg-kangen-100 text-kangen-700 rounded-full text-sm font-medium mb-4">
-            Discover The Advantages
+            {t('benefits.tag')}
           </span>
-          <h2 className="section-title">Experience the <span className="gradient-text">Benefits</span></h2>
+          <h2 className="section-title">{t('benefits.title')} <span className="gradient-text">{t('benefits.titleHighlight')}</span></h2>
           <p className="section-subtitle">
-            Kangen Water® machines produce ionized alkaline and acidic waters through electrolysis, offering various benefits for drinking, cooking, beauty, and cleaning
+            {t('benefits.description')}
           </p>
         </div>
         
@@ -101,9 +104,9 @@ const Benefits: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">Transform Your Life with <span className="gradient-text">Kangen Water®</span></h3>
+            <h3 className="text-2xl md:text-3xl font-bold mb-6">{t('benefits.transform')} <span className="gradient-text">{t('benefits.transformHighlight')}</span></h3>
             <p className="text-muted-foreground mb-6">
-              Kangen Water® isn't just about hydration—it's about transforming your approach to health and wellness. With its unique properties and versatile applications, Kangen Water® has helped millions of people worldwide improve their quality of life.
+              {t('benefits.transformDescription')}
             </p>
             
             <div className="space-y-4">
@@ -111,21 +114,21 @@ const Benefits: React.FC = () => {
                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-kangen-100 flex items-center justify-center">
                   <span className="text-kangen-700 font-medium">1</span>
                 </div>
-                <p>Start with drinking 8-10 glasses of Kangen Water® daily</p>
+                <p>{t('benefits.step1')}</p>
               </div>
               
               <div className="flex gap-3">
                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-kangen-100 flex items-center justify-center">
                   <span className="text-kangen-700 font-medium">2</span>
                 </div>
-                <p>Use different pH levels for specific applications around your home</p>
+                <p>{t('benefits.step2')}</p>
               </div>
               
               <div className="flex gap-3">
                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-kangen-100 flex items-center justify-center">
                   <span className="text-kangen-700 font-medium">3</span>
                 </div>
-                <p>Experience the difference in how you feel, look, and perform</p>
+                <p>{t('benefits.step3')}</p>
               </div>
             </div>
           </motion.div>
