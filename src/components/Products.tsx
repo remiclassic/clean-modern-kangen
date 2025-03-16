@@ -164,41 +164,41 @@ const Products: React.FC = () => {
                 </div>
               )}
               
-              <ProductCard
-                title={product.title}
-                image={product.image}
-                description={product.description}
-                features={product.features}
-                price={product.price}
-                className={`animate-fade-in-up ${product.isBestSeller ? "ring-2 ring-kangen-500 shadow-lg" : ""}`}
-              />
-              <div className="mt-4">
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <CustomButton 
-                      variant="outline" 
-                      size="sm" 
-                      className="w-full"
-                      onClick={() => handleLearnMore(product)}
-                    >
-                      Learn More
-                    </CustomButton>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent className="sm:max-w-[600px]">
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>{product.title} - Kangen Water System</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        Get to know our premium {product.title} water ionizer.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Close</AlertDialogCancel>
-                      <AlertDialogAction>Request Info</AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </div>
+              <AlertDialog>
+                <ProductCard
+                  title={product.title}
+                  image={product.image}
+                  description={product.description}
+                  features={product.features}
+                  price={product.price}
+                  className={`animate-fade-in-up ${product.isBestSeller ? "ring-2 ring-kangen-500 shadow-lg" : ""}`}
+                  action={
+                    <AlertDialogTrigger asChild>
+                      <CustomButton 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full mt-4"
+                        onClick={() => handleLearnMore(product)}
+                      >
+                        Learn More
+                      </CustomButton>
+                    </AlertDialogTrigger>
+                  }
+                />
+                <AlertDialogContent className="sm:max-w-[600px]">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>{product.title} - Kangen Water System</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Get to know our premium {product.title} water ionizer.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Close</AlertDialogCancel>
+                    <AlertDialogAction>Request Info</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </motion.div>
           ))}
         </div>
@@ -226,53 +226,53 @@ const Products: React.FC = () => {
                   animate={isExpanded ? "visible" : "hidden"}
                   variants={productVariants}
                 >
-                  <ProductCard
-                    title={product.title}
-                    image={product.image}
-                    description={product.description}
-                    features={product.features}
-                    price={product.price}
-                    className="animate-fade-in-up"
-                  />
-                  <div className="mt-4">
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <CustomButton 
-                          variant="outline" 
-                          size="sm" 
-                          className="w-full"
-                          onClick={() => handleLearnMore(product)}
-                        >
-                          Learn More
-                        </CustomButton>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent className="sm:max-w-[600px]">
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>{product.title} - Kangen Water System</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            Get to know our premium {product.title} water ionizer.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Close</AlertDialogCancel>
-                          <AlertDialogAction>Request Info</AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </div>
+                  <AlertDialog>
+                    <ProductCard
+                      title={product.title}
+                      image={product.image}
+                      description={product.description}
+                      features={product.features}
+                      price={product.price}
+                      className="animate-fade-in-up"
+                      action={
+                        <AlertDialogTrigger asChild>
+                          <CustomButton 
+                            variant="outline" 
+                            size="sm" 
+                            className="w-full mt-4"
+                            onClick={() => handleLearnMore(product)}
+                          >
+                            Learn More
+                          </CustomButton>
+                        </AlertDialogTrigger>
+                      }
+                    />
+                    <AlertDialogContent className="sm:max-w-[600px]">
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>{product.title} - Kangen Water System</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Get to know our premium {product.title} water ionizer.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Close</AlertDialogCancel>
+                        <AlertDialogAction>Request Info</AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </motion.div>
               ))}
             </motion.div>
           </CollapsibleContent>
           
-          <div className="text-center">
+          <div className="text-center mt-8">
             <CollapsibleTrigger asChild>
               <CustomButton 
                 variant="secondary" 
                 size="lg" 
                 onClick={handleViewAllProducts}
-                className="flex items-center gap-2 transition-all duration-300 hover:bg-kangen-100"
+                className="flex items-center gap-2 transition-all duration-300 hover:bg-kangen-100 mx-auto"
               >
                 {isExpanded ? 'Hide Products' : 'View All Products'}
                 <motion.div
