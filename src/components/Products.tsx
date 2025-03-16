@@ -5,9 +5,11 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { allProducts, type Product } from '@/data/productData';
 import AnimatedProductCard from './products/AnimatedProductCard';
 import ProductDetails from './products/ProductDetails';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Products: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const { t } = useLanguage();
   
   const handleLearnMore = (product: Product) => {
     setSelectedProduct(product);
@@ -18,11 +20,11 @@ const Products: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
           <span className="inline-block py-1 px-3 bg-kangen-100 text-kangen-700 rounded-full text-sm font-medium mb-4">
-            Premium Selection
+            {t('products.tag')}
           </span>
-          <h2 className="section-title">Discover Our <span className="gradient-text">Product Line</span></h2>
+          <h2 className="section-title">{t('products.title')} <span className="gradient-text">{t('products.titleHighlight')}</span></h2>
           <p className="section-subtitle">
-            Explore our range of innovative water ionizers designed to transform ordinary tap water into extraordinary hydrogen-rich alkaline water
+            {t('products.description')}
           </p>
         </div>
         
@@ -36,15 +38,15 @@ const Products: React.FC = () => {
               />
               <AlertDialogContent className="sm:max-w-[600px]">
                 <AlertDialogHeader>
-                  <AlertDialogTitle>{product.title} - Kangen Water System</AlertDialogTitle>
+                  <AlertDialogTitle>{product.title} - {t('products.dialogTitle')}</AlertDialogTitle>
                   <AlertDialogDescription>
-                    Get to know our premium {product.title} water ionizer.
+                    {t('products.dialogDescription').replace('product', product.title)}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Close</AlertDialogCancel>
-                  <AlertDialogAction>Request Info</AlertDialogAction>
+                  <AlertDialogCancel>{t('products.close')}</AlertDialogCancel>
+                  <AlertDialogAction>{t('products.requestInfo')}</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>

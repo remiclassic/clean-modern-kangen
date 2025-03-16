@@ -5,26 +5,29 @@ import { CustomButton } from './ui/Button';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import GetStartedModal from './GetStartedModal';
+import LanguageSelector from './LanguageSelector';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface NavItem {
-  label: string;
+  labelKey: string;
   href: string;
 }
 
 const navItems: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Products', href: '/#products' },
-  { label: 'Benefits', href: '/#benefits' },
-  { label: 'Technology', href: '/#technology' },
-  { label: 'Resources', href: '/water-research' },
-  { label: 'Opportunity', href: '/business-opportunity' },
-  { label: 'About Matthieu', href: '/about-matthieu' },
-  { label: 'Contact', href: '/#contact' },
+  { labelKey: 'nav.home', href: '/' },
+  { labelKey: 'nav.products', href: '/#products' },
+  { labelKey: 'nav.benefits', href: '/#benefits' },
+  { labelKey: 'nav.technology', href: '/#technology' },
+  { labelKey: 'nav.resources', href: '/water-research' },
+  { labelKey: 'nav.opportunity', href: '/business-opportunity' },
+  { labelKey: 'nav.about', href: '/about-matthieu' },
+  { labelKey: 'nav.contact', href: '/#contact' },
 ];
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,45 +58,52 @@ const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <ul className="flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-4">
+          <ul className="flex items-center space-x-6">
             {navItems.map((item) => (
-              <li key={item.label}>
+              <li key={item.labelKey}>
                 {item.href.startsWith('/#') ? (
                   <a
                     href={item.href}
                     className="text-gray-700 hover:text-kangen-600 transition-colors duration-200 font-medium"
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </a>
                 ) : (
                   <Link
                     to={item.href}
                     className="text-gray-700 hover:text-kangen-600 transition-colors duration-200 font-medium"
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </Link>
                 )}
               </li>
             ))}
           </ul>
-          <GetStartedModal>
-            <CustomButton size="sm">Get Started</CustomButton>
-          </GetStartedModal>
+          
+          <div className="flex items-center space-x-2">
+            <LanguageSelector />
+            <GetStartedModal>
+              <CustomButton size="sm">{t('nav.getStarted')}</CustomButton>
+            </GetStartedModal>
+          </div>
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-gray-700"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? (
-            <X size={24} className="text-gray-700" />
-          ) : (
-            <Menu size={24} className="text-gray-700" />
-          )}
-        </button>
+        {/* Mobile Menu Toggle and Language Selector */}
+        <div className="flex items-center space-x-2 md:hidden">
+          <LanguageSelector />
+          <button
+            className="text-gray-700"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X size={24} className="text-gray-700" />
+            ) : (
+              <Menu size={24} className="text-gray-700" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}
@@ -106,14 +116,14 @@ const Navbar: React.FC = () => {
         <nav className="container mx-auto px-4 py-6">
           <ul className="flex flex-col space-y-6">
             {navItems.map((item) => (
-              <li key={item.label}>
+              <li key={item.labelKey}>
                 {item.href.startsWith('/#') ? (
                   <a
                     href={item.href}
                     className="text-gray-800 text-lg font-medium block py-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </a>
                 ) : (
                   <Link
@@ -121,7 +131,7 @@ const Navbar: React.FC = () => {
                     className="text-gray-800 text-lg font-medium block py-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </Link>
                 )}
               </li>
@@ -129,7 +139,7 @@ const Navbar: React.FC = () => {
             <li className="pt-4">
               <GetStartedModal>
                 <CustomButton className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
-                  Get Started
+                  {t('nav.getStarted')}
                 </CustomButton>
               </GetStartedModal>
             </li>

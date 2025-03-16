@@ -2,10 +2,12 @@
 import React, { useEffect, useRef } from 'react';
 import { CustomButton } from './ui/Button';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const heroElement = heroRef.current;
@@ -65,38 +67,38 @@ const Hero: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div className="animate-fade-in-up">
             <span className="inline-block py-1 px-3 bg-kangen-100 text-kangen-700 rounded-full text-sm font-medium mb-6">
-              Innovative Hydration Technology
+              {t('hero.tag')}
             </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
-              Transform Your
-              <span className="gradient-text block">Water Experience</span>
+              {t('hero.title')}
+              <span className="gradient-text block">{t('hero.titleHighlight')}</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-lg">
-              Discover the revolutionary Kangen Water® technology that provides superior hydration, optimal pH levels, and antioxidant properties for healthier living.
+              {t('hero.description')}
             </p>
             
             <div className="flex flex-wrap gap-4">
               <CustomButton size="lg" className="group" onClick={scrollToProducts}>
-                Explore Products
+                {t('hero.exploreProducts')}
                 <ArrowRight className="ml-1 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </CustomButton>
               <CustomButton variant="outline" size="lg" onClick={scrollToTechnology}>
-                Learn More
+                {t('hero.learnMore')}
               </CustomButton>
             </div>
             
             <div className="mt-10 grid grid-cols-3 gap-4">
               <div className="text-center">
                 <div className="text-3xl font-bold text-kangen-700">7+</div>
-                <div className="text-sm text-muted-foreground">pH Levels</div>
+                <div className="text-sm text-muted-foreground">{t('hero.phLevels')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-kangen-700">40+</div>
-                <div className="text-sm text-muted-foreground">Countries</div>
+                <div className="text-sm text-muted-foreground">{t('hero.countries')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-kangen-700">5M+</div>
-                <div className="text-sm text-muted-foreground">Customers</div>
+                <div className="text-sm text-muted-foreground">{t('hero.customers')}</div>
               </div>
             </div>
           </div>

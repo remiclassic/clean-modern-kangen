@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, ShieldCheck } from 'lucide-react';
 import type { Product } from '@/data/productData';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ProductDetailsProps {
   product: Product;
@@ -10,6 +11,8 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => {
+  const { t } = useLanguage();
+  
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -54,7 +57,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => 
           className="text-xl font-semibold" 
           variants={itemVariants}
         >
-          {product.title} Features
+          {product.title} {t('products.features')}
         </motion.h3>
         <motion.div 
           className="flex items-center text-yellow-500" 
@@ -83,8 +86,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => 
       </motion.ul>
       
       <motion.p variants={itemVariants}>
-        The {product.title} is designed with state-of-the-art technology to provide you with the healthiest water possible.
-        It features a self-cleaning system and delivers various types of water for different uses in your daily life.
+        {t('products.description2').replace('product', product.title)}
       </motion.p>
       
       <motion.div 
@@ -93,8 +95,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => 
       >
         <ShieldCheck className="h-5 w-5 text-kangen-500" />
         <div>
-          <p className="text-sm font-medium">Quality Guarantee</p>
-          <p className="text-xs text-gray-600">Each unit comes with a 5-year manufacturer warranty</p>
+          <p className="text-sm font-medium">{t('products.warranty')}</p>
+          <p className="text-xs text-gray-600">{t('products.warrantyDescription')}</p>
         </div>
       </motion.div>
     </motion.div>

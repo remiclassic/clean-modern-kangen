@@ -16,31 +16,34 @@ import Terms from "./pages/Terms";
 import Disclaimer from "./pages/Disclaimer";
 import AboutMatthieu from "./pages/AboutMatthieu";
 import { EngagementToaster } from "./components/EngagementToaster";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/faqs" element={<FAQs />} />
-          <Route path="/user-manual" element={<UserManual />} />
-          <Route path="/water-research" element={<WaterResearch />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/business-opportunity" element={<BusinessOpportunity />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/disclaimer" element={<Disclaimer />} />
-          <Route path="/about-matthieu" element={<AboutMatthieu />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-      <EngagementToaster />
+      <LanguageProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/faqs" element={<FAQs />} />
+            <Route path="/user-manual" element={<UserManual />} />
+            <Route path="/water-research" element={<WaterResearch />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/business-opportunity" element={<BusinessOpportunity />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
+            <Route path="/about-matthieu" element={<AboutMatthieu />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+        <EngagementToaster />
+      </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

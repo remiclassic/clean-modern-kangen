@@ -12,12 +12,15 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/shadcn-button";
 import { CustomButton } from './ui/Button';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface GetStartedModalProps {
   children: React.ReactNode;
 }
 
 const GetStartedModal: React.FC<GetStartedModalProps> = ({ children }) => {
+  const { t } = useLanguage();
+  
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -25,9 +28,9 @@ const GetStartedModal: React.FC<GetStartedModalProps> = ({ children }) => {
       </DialogTrigger>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-kangen-600">Join the Kangen Water Family</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-kangen-600">{t('modal.title')}</DialogTitle>
           <DialogDescription className="pt-2">
-            Choose how you would like to get started with Kangen Water
+            {t('modal.description')}
           </DialogDescription>
         </DialogHeader>
         
@@ -37,8 +40,8 @@ const GetStartedModal: React.FC<GetStartedModalProps> = ({ children }) => {
               <Users className="h-6 w-6 text-kangen-600" />
             </div>
             <div>
-              <h3 className="font-medium text-gray-900">Become a Distributor</h3>
-              <p className="text-sm text-gray-500">Join our business opportunity and build your own Kangen Water business</p>
+              <h3 className="font-medium text-gray-900">{t('modal.distributor')}</h3>
+              <p className="text-sm text-gray-500">{t('modal.distributorDescription')}</p>
             </div>
           </Link>
           
@@ -47,8 +50,8 @@ const GetStartedModal: React.FC<GetStartedModalProps> = ({ children }) => {
               <Phone className="h-6 w-6 text-kangen-600" />
             </div>
             <div>
-              <h3 className="font-medium text-gray-900">Request a Demo</h3>
-              <p className="text-sm text-gray-500">Schedule a demonstration to see Kangen Water in action</p>
+              <h3 className="font-medium text-gray-900">{t('modal.demo')}</h3>
+              <p className="text-sm text-gray-500">{t('modal.demoDescription')}</p>
             </div>
           </a>
           
@@ -57,15 +60,15 @@ const GetStartedModal: React.FC<GetStartedModalProps> = ({ children }) => {
               <Mail className="h-6 w-6 text-kangen-600" />
             </div>
             <div>
-              <h3 className="font-medium text-gray-900">Contact Us</h3>
-              <p className="text-sm text-gray-500">Email us directly with any questions about our products</p>
+              <h3 className="font-medium text-gray-900">{t('modal.contact')}</h3>
+              <p className="text-sm text-gray-500">{t('modal.contactDescription')}</p>
             </div>
           </a>
         </div>
         
         <div className="flex flex-col space-y-2 mt-2">
           <p className="text-xs text-gray-500 text-center">
-            Already a customer? <a href="#contact" className="text-kangen-600 hover:underline">Get support</a>
+            {t('modal.support')} <a href="#contact" className="text-kangen-600 hover:underline">{t('modal.getSupport')}</a>
           </p>
           <div className="flex items-center justify-center">
             <a 
@@ -74,7 +77,7 @@ const GetStartedModal: React.FC<GetStartedModalProps> = ({ children }) => {
               rel="noopener noreferrer"
               className="inline-flex items-center text-xs text-gray-500 hover:text-kangen-600"
             >
-              Visit official website <ExternalLink className="ml-1 h-3 w-3" />
+              {t('modal.official')} <ExternalLink className="ml-1 h-3 w-3" />
             </a>
           </div>
         </div>
