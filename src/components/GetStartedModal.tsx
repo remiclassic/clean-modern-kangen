@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/shadcn-button";
+import { Button } from "@/components/ui/button";
 import { CustomButton } from './ui/Button';
 import { useLanguage } from '@/context/LanguageContext';
 

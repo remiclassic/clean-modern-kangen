@@ -5,7 +5,7 @@ import {
   DownloadCloud
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/shadcn-button';
+import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Product } from '@/data/productData';
 import { useLanguage } from '@/context/LanguageContext';

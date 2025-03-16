@@ -8,7 +8,7 @@ import {
   DropdownMenuItem, 
   DropdownMenuTrigger 
 } from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/shadcn-button';
+import { Button } from '@/components/ui/button';
 
 const LanguageSelector: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
