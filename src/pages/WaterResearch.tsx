@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { motion } from 'framer-motion';
 import { FileText, Beaker, Microscope, BookOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const researchItems = [
   {
@@ -76,9 +77,9 @@ const WaterResearch = () => {
                       <p className="text-kangen-600 font-medium mb-1">{item.authors}</p>
                       <p className="text-gray-500 text-sm mb-3">{item.date}</p>
                       <p className="text-gray-600 mb-4">{item.summary}</p>
-                      <button className="text-kangen-600 font-medium hover:text-kangen-700 transition-colors">
+                      <Link to="#" className="text-kangen-600 font-medium hover:text-kangen-700 transition-colors">
                         Read Full Research Paper →
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>

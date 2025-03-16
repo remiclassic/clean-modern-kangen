@@ -36,19 +36,19 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Home</a>
+                <Link to="/" className="text-gray-400 hover:text-white transition-colors duration-200">Home</Link>
               </li>
               <li>
-                <a href="#products" className="text-gray-400 hover:text-white transition-colors duration-200">Products</a>
+                <a href="/#products" className="text-gray-400 hover:text-white transition-colors duration-200">Products</a>
               </li>
               <li>
-                <a href="#benefits" className="text-gray-400 hover:text-white transition-colors duration-200">Benefits</a>
+                <a href="/#benefits" className="text-gray-400 hover:text-white transition-colors duration-200">Benefits</a>
               </li>
               <li>
-                <a href="#technology" className="text-gray-400 hover:text-white transition-colors duration-200">Technology</a>
+                <a href="/#technology" className="text-gray-400 hover:text-white transition-colors duration-200">Technology</a>
               </li>
               <li>
-                <a href="#contact" className="text-gray-400 hover:text-white transition-colors duration-200">Contact</a>
+                <a href="/#contact" className="text-gray-400 hover:text-white transition-colors duration-200">Contact</a>
               </li>
             </ul>
           </div>
@@ -95,15 +95,15 @@ const Footer: React.FC = () => {
               © 2023 Kangen Water. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors duration-200">
+              <Link to="/privacy-policy" className="text-gray-500 hover:text-white text-sm transition-colors duration-200">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors duration-200">
+              </Link>
+              <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors duration-200">
                 Terms of Service
-              </a>
-              <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors duration-200">
+              </Link>
+              <Link to="/disclaimer" className="text-gray-500 hover:text-white text-sm transition-colors duration-200">
                 Disclaimer
-              </a>
+              </Link>
             </div>
           </div>
         </div>

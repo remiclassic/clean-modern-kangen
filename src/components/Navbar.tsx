@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { CustomButton } from './ui/Button';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface NavItem {
   label: string;
@@ -10,11 +11,12 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: 'Home', href: '#' },
-  { label: 'Products', href: '#products' },
-  { label: 'Benefits', href: '#benefits' },
-  { label: 'Technology', href: '#technology' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'Products', href: '/#products' },
+  { label: 'Benefits', href: '/#benefits' },
+  { label: 'Technology', href: '/#technology' },
+  { label: 'Resources', href: '/water-research' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 const Navbar: React.FC = () => {
@@ -44,22 +46,31 @@ const Navbar: React.FC = () => {
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <a href="#" className="font-display font-bold text-2xl">
+        <Link to="/" className="font-display font-bold text-2xl">
           <span className="gradient-text">Kangen</span>
           <span className="text-gray-800">Water</span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <ul className="flex items-center space-x-8">
             {navItems.map((item) => (
               <li key={item.label}>
-                <a
-                  href={item.href}
-                  className="text-gray-700 hover:text-kangen-600 transition-colors duration-200 font-medium"
-                >
-                  {item.label}
-                </a>
+                {item.href.startsWith('/#') ? (
+                  <a
+                    href={item.href}
+                    className="text-gray-700 hover:text-kangen-600 transition-colors duration-200 font-medium"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="text-gray-700 hover:text-kangen-600 transition-colors duration-200 font-medium"
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -91,13 +102,23 @@ const Navbar: React.FC = () => {
           <ul className="flex flex-col space-y-6">
             {navItems.map((item) => (
               <li key={item.label}>
-                <a
-                  href={item.href}
-                  className="text-gray-800 text-lg font-medium block py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
+                {item.href.startsWith('/#') ? (
+                  <a
+                    href={item.href}
+                    className="text-gray-800 text-lg font-medium block py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="text-gray-800 text-lg font-medium block py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
             <li className="pt-4">
