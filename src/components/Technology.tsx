@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CustomButton } from './ui/Button';
 
 const Technology: React.FC = () => {
@@ -72,9 +73,11 @@ const Technology: React.FC = () => {
               </p>
             </div>
             
-            <CustomButton size="lg">
-              Learn More About Our Technology
-            </CustomButton>
+            <Link to="/water-research">
+              <CustomButton size="lg">
+                Learn More About Our Technology
+              </CustomButton>
+            </Link>
           </div>
         </div>
         
