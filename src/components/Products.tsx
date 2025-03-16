@@ -1,118 +1,54 @@
 
-import React, { useState } from 'react';
-import { ProductCard } from './ui/ProductCard';
-import { CustomButton } from './ui/Button';
-import { ChevronDown, ChevronUp, Award } from 'lucide-react';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './ui/alert-dialog';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
+import React, { useState, useEffect } from 'react';
+import { ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const products = [
-  {
-    id: 1,
-    title: 'K8',
-    image: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
-    description: 'Our premium model with the most plate capability for maximum antioxidant potential.',
-    features: ['8 Platinum-Coated Plates', '5 Water Settings', 'Voice-Guided Operation'],
-    price: 'From $4,980',
-    videoUrl: 'https://www.youtube.com/embed/XmVUg3ZviGE',
-    isBestSeller: true
-  },
-  {
-    id: 2,
-    title: 'SD501',
-    image: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67',
-    description: 'The flagship model that offers exceptional performance for families and businesses.',
-    features: ['7 Solid Platinum-Coated Plates', 'LCD Display Panel', 'Automatic Cleaning'],
-    price: 'From $3,980',
-    videoUrl: 'https://www.youtube.com/embed/gjvZX-ufm5E',
-    isBestSeller: false
-  },
-  {
-    id: 3,
-    title: 'R',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
-    description: 'Compact design for smaller spaces while delivering exceptional performance.',
-    features: ['5 Platinum-Coated Plates', 'LCD Display', 'Energy Saving Mode'],
-    price: 'From $2,980',
-    videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM',
-    isBestSeller: false
-  }
-];
-
-const additionalProducts = [
-  {
-    id: 4,
-    title: 'SD501 Platinum',
-    image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05',
-    description: 'A luxurious upgrade to our flagship model with premium design elements.',
-    features: ['7 Solid Platinum-Coated Plates', 'Premium Design', 'Auto-Filter Replacement Sensor'],
-    price: 'From $4,280',
-    videoUrl: 'https://www.youtube.com/embed/gjvZX-ufm5E',
-    isBestSeller: false
-  },
-  {
-    id: 5,
-    title: 'JRIV',
-    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470',
-    description: 'Our most portable unit, perfect for travel or small living spaces.',
-    features: ['3 Platinum-Coated Plates', 'Compact & Portable', 'Single Water Type'],
-    price: 'From $1,980',
-    videoUrl: 'https://www.youtube.com/embed/QLWikx3TzZM',
-    isBestSeller: false
-  },
-  {
-    id: 6,
-    title: 'Super 501',
-    image: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff',
-    description: 'Commercial-grade water ionizer designed for high-volume business applications.',
-    features: ['12 Platinum-Coated Plates', 'High-Volume Output', 'Commercial Grade Components'],
-    price: 'From $5,980',
-    videoUrl: 'https://www.youtube.com/embed/XmVUg3ZviGE',
-    isBestSeller: false
-  }
-];
-
-interface ProductDetailsProps {
-  product: (typeof products[0] | typeof additionalProducts[0]);
-  onClose: () => void;
-}
-
-const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => (
-  <div className="space-y-6">
-    <div className="aspect-video rounded-lg overflow-hidden">
-      <iframe 
-        className="w-full h-full" 
-        src={product.videoUrl}
-        title={`${product.title} Video`}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
-    </div>
-    <div>
-      <h3 className="text-xl font-semibold mb-4">{product.title} Features</h3>
-      <ul className="space-y-2">
-        {product.features.map((feature, idx) => (
-          <li key={idx} className="flex items-start gap-2">
-            <span className="text-kangen-500 mt-1">•</span>
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-    <p>
-      The {product.title} is designed with state-of-the-art technology to provide you with the healthiest water possible.
-      It features a self-cleaning system and delivers various types of water for different uses in your daily life.
-    </p>
-  </div>
-);
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from './ui/alert-dialog';
+import { CustomButton } from './ui/Button';
+import { featuredProducts, additionalProducts, type Product } from '@/data/productData';
+import AnimatedProductCard from './products/AnimatedProductCard';
+import ProductDetails from './products/ProductDetails';
+import ProductFilter from './products/ProductFilter';
 
 const Products: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = useState<(typeof products[0] | typeof additionalProducts[0]) | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   
-  const handleLearnMore = (product: typeof products[0] | typeof additionalProducts[0]) => {
+  // Filter state
+  const [priceRange, setPriceRange] = useState<[number, number]>([1000, 6000]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [filteredFeaturedProducts, setFilteredFeaturedProducts] = useState(featuredProducts);
+  const [filteredAdditionalProducts, setFilteredAdditionalProducts] = useState(additionalProducts);
+  
+  // Filter products based on price range and category
+  useEffect(() => {
+    setFilteredFeaturedProducts(
+      featuredProducts.filter(product => {
+        const priceMatch = product.priceValue && 
+          product.priceValue >= priceRange[0] && 
+          product.priceValue <= priceRange[1];
+        
+        const categoryMatch = selectedCategory === "all" || 
+          product.category === selectedCategory;
+        
+        return priceMatch && categoryMatch;
+      })
+    );
+    
+    setFilteredAdditionalProducts(
+      additionalProducts.filter(product => {
+        const priceMatch = product.priceValue && 
+          product.priceValue >= priceRange[0] && 
+          product.priceValue <= priceRange[1];
+        
+        const categoryMatch = selectedCategory === "all" || 
+          product.category === selectedCategory;
+        
+        return priceMatch && categoryMatch;
+      })
+    );
+  }, [priceRange, selectedCategory]);
+  
+  const handleLearnMore = (product: Product) => {
     setSelectedProduct(product);
   };
   
@@ -120,67 +56,15 @@ const Products: React.FC = () => {
     setIsExpanded(!isExpanded);
   };
 
-  const productVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    })
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0, height: 0 },
-    visible: { 
-      opacity: 1, 
-      height: "auto",
-      transition: { 
-        duration: 0.5, 
-        ease: [0.22, 1, 0.36, 1],
-        staggerChildren: 0.1,
-        when: "beforeChildren"
-      }
-    },
-    exit: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-        when: "afterChildren"
-      }
-    }
-  };
-
-  const additionalProductsVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }),
-    exit: { 
-      opacity: 0, 
-      y: 20,
-      transition: {
-        duration: 0.3,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
+  const resetFilters = () => {
+    setPriceRange([1000, 6000]);
+    setSelectedCategory("all");
   };
 
   return (
     <section id="products" className="bg-kangen-50/80 py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <span className="inline-block py-1 px-3 bg-kangen-100 text-kangen-700 rounded-full text-sm font-medium mb-4">
             Premium Selection
           </span>
@@ -190,43 +74,22 @@ const Products: React.FC = () => {
           </p>
         </div>
         
+        <ProductFilter 
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          resetFilters={resetFilters}
+        />
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {products.map((product, index) => (
-            <motion.div 
-              key={product.id}
-              custom={index}
-              initial="hidden"
-              animate="visible"
-              variants={productVariants}
-              className={product.isBestSeller ? "transform scale-105 relative z-10" : ""}
-            >
-              {product.isBestSeller && (
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-kangen-500 to-kangen-700 text-white py-1 px-3 rounded-full flex items-center gap-1 shadow-md z-20 transform rotate-3">
-                  <Award className="h-4 w-4" />
-                  <span className="text-sm font-medium">Best Seller</span>
-                </div>
-              )}
-              
-              <AlertDialog>
-                <ProductCard
-                  title={product.title}
-                  image={product.image}
-                  description={product.description}
-                  features={product.features}
-                  price={product.price}
-                  className={`animate-fade-in-up ${product.isBestSeller ? "ring-2 ring-kangen-500 shadow-lg" : ""}`}
-                  action={
-                    <AlertDialogTrigger asChild>
-                      <CustomButton 
-                        variant="outline" 
-                        size="sm" 
-                        className="w-full mt-4"
-                        onClick={() => handleLearnMore(product)}
-                      >
-                        Learn More
-                      </CustomButton>
-                    </AlertDialogTrigger>
-                  }
+          {filteredFeaturedProducts.length > 0 ? (
+            filteredFeaturedProducts.map((product, index) => (
+              <AlertDialog key={product.id}>
+                <AnimatedProductCard 
+                  product={product}
+                  index={index}
+                  handleLearnMore={handleLearnMore}
                 />
                 <AlertDialogContent className="sm:max-w-[600px]">
                   <AlertDialogHeader>
@@ -242,45 +105,54 @@ const Products: React.FC = () => {
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
-            </motion.div>
-          ))}
+            ))
+          ) : (
+            <div className="col-span-3 text-center py-12">
+              <p className="text-gray-500">No products match your current filters.</p>
+              <CustomButton 
+                variant="outline" 
+                size="sm" 
+                onClick={resetFilters}
+                className="mt-4"
+              >
+                Reset Filters
+              </CustomButton>
+            </div>
+          )}
         </div>
         
         <AnimatePresence>
           {isExpanded && (
             <motion.div 
               className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 mt-8 pt-8 border-t border-gray-200"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ 
+                opacity: 1, 
+                height: "auto",
+                transition: { 
+                  duration: 0.5, 
+                  ease: [0.22, 1, 0.36, 1],
+                  staggerChildren: 0.1,
+                  when: "beforeChildren"
+                }
+              }}
+              exit={{ 
+                opacity: 0, 
+                height: 0,
+                transition: {
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                  when: "afterChildren"
+                }
+              }}
             >
-              {additionalProducts.map((product, index) => (
-                <motion.div 
-                  key={product.id}
-                  custom={index}
-                  variants={additionalProductsVariants}
-                >
-                  <AlertDialog>
-                    <ProductCard
-                      title={product.title}
-                      image={product.image}
-                      description={product.description}
-                      features={product.features}
-                      price={product.price}
-                      className="animate-fade-in-up"
-                      action={
-                        <AlertDialogTrigger asChild>
-                          <CustomButton 
-                            variant="outline" 
-                            size="sm" 
-                            className="w-full mt-4"
-                            onClick={() => handleLearnMore(product)}
-                          >
-                            Learn More
-                          </CustomButton>
-                        </AlertDialogTrigger>
-                      }
+              {filteredAdditionalProducts.length > 0 ? (
+                filteredAdditionalProducts.map((product, index) => (
+                  <AlertDialog key={product.id}>
+                    <AnimatedProductCard 
+                      product={product}
+                      index={index}
+                      handleLearnMore={handleLearnMore}
                     />
                     <AlertDialogContent className="sm:max-w-[600px]">
                       <AlertDialogHeader>
@@ -296,8 +168,12 @@ const Products: React.FC = () => {
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
-                </motion.div>
-              ))}
+                ))
+              ) : (
+                <div className="col-span-3 text-center py-12">
+                  <p className="text-gray-500">No additional products match your current filters.</p>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
