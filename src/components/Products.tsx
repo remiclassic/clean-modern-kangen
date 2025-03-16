@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ProductCard } from './ui/ProductCard';
 import { CustomButton } from './ui/Button';
@@ -40,7 +39,6 @@ const products = [
   }
 ];
 
-// Additional products that will be shown when expanded
 const additionalProducts = [
   {
     id: 4,

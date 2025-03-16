@@ -9,6 +9,7 @@ interface ProductCardProps {
   price?: string;
   features?: string[];
   className?: string;
+  action?: React.ReactNode;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -18,6 +19,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
   features,
   className,
+  action,
 }) => {
   return (
     <div 
@@ -54,6 +56,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {price}
           </div>
         )}
+        
+        {action && <div className="mt-2">{action}</div>}
       </div>
     </div>
   );
