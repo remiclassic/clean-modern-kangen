@@ -16,6 +16,7 @@ const navItems: NavItem[] = [
   { label: 'Benefits', href: '/#benefits' },
   { label: 'Technology', href: '/#technology' },
   { label: 'Resources', href: '/water-research' },
+  { label: 'Opportunity', href: '/business-opportunity' },
   { label: 'Contact', href: '/#contact' },
 ];
 

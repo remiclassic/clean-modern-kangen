@@ -10,6 +10,7 @@ import FAQs from "./pages/FAQs";
 import UserManual from "./pages/UserManual";
 import WaterResearch from "./pages/WaterResearch";
 import Testimonials from "./pages/Testimonials";
+import BusinessOpportunity from "./pages/BusinessOpportunity";
 import { EngagementToaster } from "./components/EngagementToaster";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/user-manual" element={<UserManual />} />
           <Route path="/water-research" element={<WaterResearch />} />
           <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/business-opportunity" element={<BusinessOpportunity />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
