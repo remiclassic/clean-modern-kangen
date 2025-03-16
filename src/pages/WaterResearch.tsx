@@ -13,7 +13,7 @@ import {
   DialogDescription
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/shadcn-button";
+import { Button } from "@/components/ui/button";
 
 interface ResearchPaper {
   id: number;
@@ -37,9 +37,9 @@ const researchItems: ResearchPaper[] = [
     summary: 'A comprehensive review of over 500 scientific studies on molecular hydrogen (H₂) and its therapeutic potential across various medical conditions.',
     icon: <Microscope className="w-8 h-8 text-kangen-600" />,
     methodology: 'Systematic review of 500+ peer-reviewed scientific studies published between 2007-2022 on molecular hydrogen therapy. Meta-analysis of clinical trials focusing on oxidative stress-related diseases.',
-    results: 'Analysis revealed molecular hydrogen exhibits therapeutic potential in 63 different human disease models. H₂ demonstrated antioxidant effects in 87% of studies, with significant reduction in oxidative stress biomarkers (p<0.001). Clinical improvements were observed in neurological disorders (Parkinson's, Alzheimer's), metabolic conditions (diabetes, obesity), and inflammatory diseases.',
+    results: 'Analysis revealed molecular hydrogen exhibits therapeutic potential in 63 different human disease models. H₂ demonstrated antioxidant effects in 87% of studies, with significant reduction in oxidative stress biomarkers (p<0.001). Clinical improvements were observed in neurological disorders (Parkinson\'s, Alzheimer\'s), metabolic conditions (diabetes, obesity), and inflammatory diseases.',
     conclusion: 'Molecular hydrogen shows promising therapeutic potential across multiple disease categories primarily through its selective antioxidant properties and cell-signaling mechanisms. The minimal side effect profile and ease of administration make H₂ an attractive therapeutic agent worthy of further clinical investigation. More rigorous large-scale clinical trials are recommended to establish optimal dosing protocols.',
-    content: 'Molecular hydrogen (H₂) has emerged as a novel therapeutic medical gas with antioxidant, anti-inflammatory, and anti-apoptotic properties. Unlike conventional antioxidants, H₂ selectively reduces cytotoxic oxygen radicals while maintaining important reactive oxygen species needed for cell signaling. This review comprehensively analyzes the growing body of evidence supporting H₂'s therapeutic potential across various medical conditions.\n\nMultiple delivery systems have been studied, including hydrogen-rich water, hydrogen inhalation, hydrogen baths, and hydrogen-producing tablets. Clinical and preclinical evidence suggests beneficial effects in neurodegenerative disorders, metabolic syndrome, cardiovascular diseases, inflammatory conditions, and exercise-induced oxidative stress.\n\nMechanistically, H₂ appears to function through modulation of various cell signaling pathways beyond simple radical scavenging. The small molecular size allows H₂ to penetrate biomembranes and diffuse into organelles, including mitochondria and the nucleus. Importantly, no adverse effects have been observed with hydrogen therapy at therapeutic doses, supporting its excellent safety profile.'
+    content: 'Molecular hydrogen (H₂) has emerged as a novel therapeutic medical gas with antioxidant, anti-inflammatory, and anti-apoptotic properties. Unlike conventional antioxidants, H₂ selectively reduces cytotoxic oxygen radicals while maintaining important reactive oxygen species needed for cell signaling. This review comprehensively analyzes the growing body of evidence supporting H₂\'s therapeutic potential across various medical conditions.\n\nMultiple delivery systems have been studied, including hydrogen-rich water, hydrogen inhalation, hydrogen baths, and hydrogen-producing tablets. Clinical and preclinical evidence suggests beneficial effects in neurodegenerative disorders, metabolic syndrome, cardiovascular diseases, inflammatory conditions, and exercise-induced oxidative stress.\n\nMechanistically, H₂ appears to function through modulation of various cell signaling pathways beyond simple radical scavenging. The small molecular size allows H₂ to penetrate biomembranes and diffuse into organelles, including mitochondria and the nucleus. Importantly, no adverse effects have been observed with hydrogen therapy at therapeutic doses, supporting its excellent safety profile.'
   },
   {
     id: 2,
@@ -211,7 +211,7 @@ const WaterResearch = () => {
               </ScrollArea>
               
               <div className="flex justify-end">
-                <Button onClick={() => setIsDialogOpen(false)}>Close</Button>
+                <Button variant="default" onClick={() => setIsDialogOpen(false)}>Close</Button>
               </div>
             </>
           )}
