@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
@@ -13,7 +12,7 @@ import {
   DialogDescription
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/shadcn-button";
 
 interface ResearchPaper {
   id: number;
