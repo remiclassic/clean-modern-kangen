@@ -4,7 +4,7 @@ import { Slider } from '../ui/slider';
 import { CustomButton } from '../ui/Button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { motion } from 'framer-motion';
-import { Check, X } from 'lucide-react';
+import { Check, X, ChevronDown } from 'lucide-react';
 import { Checkbox } from '../ui/checkbox';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
