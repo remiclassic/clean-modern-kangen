@@ -5,7 +5,7 @@ import {
   DownloadCloud
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/shadcn-button';
 import { Separator } from '@/components/ui/separator';
 import { Product } from '@/data/productData';
 import { useLanguage } from '@/context/LanguageContext';
@@ -29,17 +29,20 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => 
               className="max-w-full max-h-full object-contain"
             />
           </div>
-          <div className="mt-4 grid grid-cols-3 gap-2">
-            {product.gallery?.map((img, i) => (
-              <div key={i} className="bg-gray-100 p-2 rounded-lg h-20 flex items-center justify-center">
-                <img
-                  src={img}
-                  alt={`${product.title} gallery ${i + 1}`}
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
+          {/* Optional gallery rendering only if it exists */}
+          {product.gallery && (
+            <div className="mt-4 grid grid-cols-3 gap-2">
+              {product.gallery.map((img, i) => (
+                <div key={i} className="bg-gray-100 p-2 rounded-lg h-20 flex items-center justify-center">
+                  <img
+                    src={img}
+                    alt={`${product.title} gallery ${i + 1}`}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         
         <div>

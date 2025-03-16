@@ -10,6 +10,7 @@ export interface Product {
   isBestSeller: boolean;
   priceValue?: number;
   category?: 'premium' | 'standard' | 'compact';
+  gallery?: string[];
 }
 
 export const featuredProducts: Product[] = [
