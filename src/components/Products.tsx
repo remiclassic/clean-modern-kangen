@@ -34,7 +34,12 @@ const products = [
   }
 ];
 
-const ProductDetails = ({ product, onClose }) => (
+interface ProductDetailsProps {
+  product: typeof products[0];
+  onClose: () => void;
+}
+
+const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => (
   <div className="space-y-6">
     <div className="aspect-video rounded-lg overflow-hidden">
       <iframe 
@@ -65,9 +70,9 @@ const ProductDetails = ({ product, onClose }) => (
 );
 
 const Products: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
   
-  const handleLearnMore = (product) => {
+  const handleLearnMore = (product: typeof products[0]) => {
     setSelectedProduct(product);
   };
   
