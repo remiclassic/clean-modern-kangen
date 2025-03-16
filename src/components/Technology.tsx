@@ -73,11 +73,13 @@ const Technology: React.FC = () => {
               </p>
             </div>
             
-            <Link to="/water-research">
-              <CustomButton size="lg">
-                Learn More About Our Technology
-              </CustomButton>
-            </Link>
+            <div className="mt-12 text-center lg:text-left">
+              <Link to="/water-research">
+                <CustomButton size="lg">
+                  Learn More About Our Technology
+                </CustomButton>
+              </Link>
+            </div>
           </div>
         </div>
         
