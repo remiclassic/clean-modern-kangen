@@ -14,17 +14,17 @@ const faqItems = [
   {
     id: 1,
     question: 'What is Kangen Water®?',
-    answer: 'Kangen Water® is alkaline, ionized water produced by Enagic's Kangen Water® machines. The process of electrolysis restructures the water molecules, making them more easily absorbed by the body while also creating water with a higher pH level and antioxidant properties.'
+    answer: 'Kangen Water® is alkaline, ionized water produced by Enagic\'s Kangen Water® machines. The process of electrolysis restructures the water molecules, making them more easily absorbed by the body while also creating water with a higher pH level and antioxidant properties.'
   },
   {
     id: 2,
     question: 'How is Kangen Water® different from regular water?',
-    answer: 'Unlike regular tap or bottled water, Kangen Water® is ionized through electrolysis, which gives it three distinct properties: it's alkaline (high pH), contains active hydrogen (antioxidant), and has micro-clustering (smaller molecular clusters for better hydration).'
+    answer: 'Unlike regular tap or bottled water, Kangen Water® is ionized through electrolysis, which gives it three distinct properties: it\'s alkaline (high pH), contains active hydrogen (antioxidant), and has micro-clustering (smaller molecular clusters for better hydration).'
   },
   {
     id: 3,
     question: 'How much Kangen Water® should I drink daily?',
-    answer: 'We recommend starting with 1-2 glasses daily and gradually increasing to 8-10 glasses per day. It's important to begin slowly to allow your body to adjust to the hydration and detoxification effects.'
+    answer: 'We recommend starting with 1-2 glasses daily and gradually increasing to 8-10 glasses per day. It\'s important to begin slowly to allow your body to adjust to the hydration and detoxification effects.'
   },
   {
     id: 4,
