@@ -1,41 +1,26 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from './ui/alert-dialog';
 import { CustomButton } from './ui/Button';
-import { featuredProducts, additionalProducts, type Product } from '@/data/productData';
+import { allProducts, type Product } from '@/data/productData';
 import AnimatedProductCard from './products/AnimatedProductCard';
 import ProductDetails from './products/ProductDetails';
 import ProductFilter from './products/ProductFilter';
 
 const Products: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isExpanded, setIsExpanded] = useState(false);
   
   // Filter state
   const [priceRange, setPriceRange] = useState<[number, number]>([1000, 6000]);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [filteredFeaturedProducts, setFilteredFeaturedProducts] = useState(featuredProducts);
-  const [filteredAdditionalProducts, setFilteredAdditionalProducts] = useState(additionalProducts);
+  const [filteredProducts, setFilteredProducts] = useState(allProducts);
   
   // Filter products based on price range and category
   useEffect(() => {
-    setFilteredFeaturedProducts(
-      featuredProducts.filter(product => {
-        const priceMatch = product.priceValue && 
-          product.priceValue >= priceRange[0] && 
-          product.priceValue <= priceRange[1];
-        
-        const categoryMatch = selectedCategory === "all" || 
-          product.category === selectedCategory;
-        
-        return priceMatch && categoryMatch;
-      })
-    );
-    
-    setFilteredAdditionalProducts(
-      additionalProducts.filter(product => {
+    setFilteredProducts(
+      allProducts.filter(product => {
         const priceMatch = product.priceValue && 
           product.priceValue >= priceRange[0] && 
           product.priceValue <= priceRange[1];
@@ -50,10 +35,6 @@ const Products: React.FC = () => {
   
   const handleLearnMore = (product: Product) => {
     setSelectedProduct(product);
-  };
-  
-  const handleViewAllProducts = () => {
-    setIsExpanded(!isExpanded);
   };
 
   const resetFilters = () => {
@@ -83,8 +64,8 @@ const Products: React.FC = () => {
         />
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {filteredFeaturedProducts.length > 0 ? (
-            filteredFeaturedProducts.map((product, index) => (
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product, index) => (
               <AlertDialog key={product.id}>
                 <AnimatedProductCard 
                   product={product}
@@ -119,80 +100,6 @@ const Products: React.FC = () => {
               </CustomButton>
             </div>
           )}
-        </div>
-        
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div 
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 mt-8 pt-8 border-t border-gray-200"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ 
-                opacity: 1, 
-                height: "auto",
-                transition: { 
-                  duration: 0.5, 
-                  ease: [0.22, 1, 0.36, 1],
-                  staggerChildren: 0.1,
-                  when: "beforeChildren"
-                }
-              }}
-              exit={{ 
-                opacity: 0, 
-                height: 0,
-                transition: {
-                  duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1],
-                  when: "afterChildren"
-                }
-              }}
-            >
-              {filteredAdditionalProducts.length > 0 ? (
-                filteredAdditionalProducts.map((product, index) => (
-                  <AlertDialog key={product.id}>
-                    <AnimatedProductCard 
-                      product={product}
-                      index={index}
-                      handleLearnMore={handleLearnMore}
-                    />
-                    <AlertDialogContent className="sm:max-w-[600px]">
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>{product.title} - Kangen Water System</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          Get to know our premium {product.title} water ionizer.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Close</AlertDialogCancel>
-                        <AlertDialogAction>Request Info</AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                ))
-              ) : (
-                <div className="col-span-3 text-center py-12">
-                  <p className="text-gray-500">No additional products match your current filters.</p>
-                </div>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
-        
-        <div className="text-center mt-8">
-          <CustomButton 
-            variant="secondary" 
-            size="lg" 
-            onClick={handleViewAllProducts}
-            className="flex items-center gap-2 transition-all duration-300 hover:bg-kangen-100 mx-auto"
-          >
-            {isExpanded ? 'Hide Products' : 'View All Products'}
-            <motion.div
-              animate={{ rotate: isExpanded ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ChevronDown className="h-4 w-4" />
-            </motion.div>
-          </CustomButton>
         </div>
       </div>
     </section>

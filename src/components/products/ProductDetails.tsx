@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Star, ShieldCheck } from 'lucide-react';
 import type { Product } from '@/data/productData';
 
 interface ProductDetailsProps {
@@ -47,27 +48,55 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose }) => 
           allowFullScreen
         ></iframe>
       </motion.div>
-      <motion.div variants={itemVariants}>
-        <h3 className="text-xl font-semibold mb-4">{product.title} Features</h3>
-        <ul className="space-y-2">
-          {product.features.map((feature, idx) => (
-            <motion.li 
-              key={idx} 
-              className="flex items-start gap-2"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.1 }}
-            >
-              <span className="text-kangen-500 mt-1">•</span>
-              <span>{feature}</span>
-            </motion.li>
+      
+      <div className="flex justify-between items-center">
+        <motion.h3 
+          className="text-xl font-semibold" 
+          variants={itemVariants}
+        >
+          {product.title} Features
+        </motion.h3>
+        <motion.div 
+          className="flex items-center text-yellow-500" 
+          variants={itemVariants}
+        >
+          {[1, 2, 3, 4, 5].map((star) => (
+            <Star key={star} className="h-4 w-4 fill-current" />
           ))}
-        </ul>
-      </motion.div>
+          <span className="ml-1 text-sm text-gray-600">5.0</span>
+        </motion.div>
+      </div>
+      
+      <motion.ul className="space-y-2" variants={itemVariants}>
+        {product.features.map((feature, idx) => (
+          <motion.li 
+            key={idx} 
+            className="flex items-start gap-2"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: idx * 0.1 }}
+          >
+            <span className="text-kangen-500 mt-1">•</span>
+            <span>{feature}</span>
+          </motion.li>
+        ))}
+      </motion.ul>
+      
       <motion.p variants={itemVariants}>
         The {product.title} is designed with state-of-the-art technology to provide you with the healthiest water possible.
         It features a self-cleaning system and delivers various types of water for different uses in your daily life.
       </motion.p>
+      
+      <motion.div 
+        className="bg-kangen-50 p-4 rounded-lg border border-kangen-100 flex items-center gap-3"
+        variants={itemVariants}
+      >
+        <ShieldCheck className="h-5 w-5 text-kangen-500" />
+        <div>
+          <p className="text-sm font-medium">Quality Guarantee</p>
+          <p className="text-xs text-gray-600">Each unit comes with a 5-year manufacturer warranty</p>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
