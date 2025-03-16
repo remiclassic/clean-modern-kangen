@@ -1,45 +1,16 @@
 
-import React, { useState, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from './ui/alert-dialog';
-import { CustomButton } from './ui/Button';
 import { allProducts, type Product } from '@/data/productData';
 import AnimatedProductCard from './products/AnimatedProductCard';
 import ProductDetails from './products/ProductDetails';
-import ProductFilter from './products/ProductFilter';
 
 const Products: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   
-  // Filter state
-  const [priceRange, setPriceRange] = useState<[number, number]>([1000, 6000]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [filteredProducts, setFilteredProducts] = useState(allProducts);
-  
-  // Filter products based on price range and category
-  useEffect(() => {
-    setFilteredProducts(
-      allProducts.filter(product => {
-        const priceMatch = product.priceValue && 
-          product.priceValue >= priceRange[0] && 
-          product.priceValue <= priceRange[1];
-        
-        const categoryMatch = selectedCategory === "all" || 
-          product.category === selectedCategory;
-        
-        return priceMatch && categoryMatch;
-      })
-    );
-  }, [priceRange, selectedCategory]);
-  
   const handleLearnMore = (product: Product) => {
     setSelectedProduct(product);
-  };
-
-  const resetFilters = () => {
-    setPriceRange([1000, 6000]);
-    setSelectedCategory("all");
   };
 
   return (
@@ -55,51 +26,29 @@ const Products: React.FC = () => {
           </p>
         </div>
         
-        <ProductFilter 
-          priceRange={priceRange}
-          setPriceRange={setPriceRange}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          resetFilters={resetFilters}
-        />
-        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product, index) => (
-              <AlertDialog key={product.id}>
-                <AnimatedProductCard 
-                  product={product}
-                  index={index}
-                  handleLearnMore={handleLearnMore}
-                />
-                <AlertDialogContent className="sm:max-w-[600px]">
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>{product.title} - Kangen Water System</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      Get to know our premium {product.title} water ionizer.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Close</AlertDialogCancel>
-                    <AlertDialogAction>Request Info</AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            ))
-          ) : (
-            <div className="col-span-3 text-center py-12">
-              <p className="text-gray-500">No products match your current filters.</p>
-              <CustomButton 
-                variant="outline" 
-                size="sm" 
-                onClick={resetFilters}
-                className="mt-4"
-              >
-                Reset Filters
-              </CustomButton>
-            </div>
-          )}
+          {allProducts.map((product, index) => (
+            <AlertDialog key={product.id}>
+              <AnimatedProductCard 
+                product={product}
+                index={index}
+                handleLearnMore={handleLearnMore}
+              />
+              <AlertDialogContent className="sm:max-w-[600px]">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>{product.title} - Kangen Water System</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Get to know our premium {product.title} water ionizer.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <ProductDetails product={product} onClose={() => setSelectedProduct(null)} />
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Close</AlertDialogCancel>
+                  <AlertDialogAction>Request Info</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          ))}
         </div>
       </div>
     </section>
