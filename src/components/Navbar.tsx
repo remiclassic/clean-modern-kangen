@@ -18,6 +18,7 @@ const navItems: NavItem[] = [
   { label: 'Technology', href: '/#technology' },
   { label: 'Resources', href: '/water-research' },
   { label: 'Opportunity', href: '/business-opportunity' },
+  { label: 'About Matthieu', href: '/about-matthieu' },
   { label: 'Contact', href: '/#contact' },
 ];
 
