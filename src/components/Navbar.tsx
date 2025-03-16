@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { CustomButton } from './ui/Button';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import GetStartedModal from './GetStartedModal';
 
 interface NavItem {
   label: string;
@@ -75,7 +76,9 @@ const Navbar: React.FC = () => {
               </li>
             ))}
           </ul>
-          <CustomButton size="sm">Get Started</CustomButton>
+          <GetStartedModal>
+            <CustomButton size="sm">Get Started</CustomButton>
+          </GetStartedModal>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -123,9 +126,11 @@ const Navbar: React.FC = () => {
               </li>
             ))}
             <li className="pt-4">
-              <CustomButton className="w-full">
-                Get Started
-              </CustomButton>
+              <GetStartedModal>
+                <CustomButton className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+                  Get Started
+                </CustomButton>
+              </GetStartedModal>
             </li>
           </ul>
         </nav>

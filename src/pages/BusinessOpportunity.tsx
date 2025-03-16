@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { CustomButton } from '@/components/ui/Button';
 import { BarChart, CheckCircle, DollarSign, Users, TrendingUp, Award } from 'lucide-react';
+import GetStartedModal from '@/components/GetStartedModal';
 
 const BusinessOpportunity = () => {
   return (
@@ -18,9 +19,11 @@ const BusinessOpportunity = () => {
               <p className="text-lg md:text-xl mb-8 opacity-90">
                 Transform lives while building a sustainable business with our revolutionary water technology
               </p>
-              <CustomButton size="lg" className="mt-4">
-                Get Started Today
-              </CustomButton>
+              <GetStartedModal>
+                <CustomButton size="lg" className="mt-4">
+                  Get Started Today
+                </CustomButton>
+              </GetStartedModal>
             </div>
           </div>
         </section>
@@ -206,13 +209,15 @@ const BusinessOpportunity = () => {
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Join thousands of successful distributors worldwide and start building your business today.
             </p>
-            <CustomButton 
-              variant="secondary" 
-              size="lg" 
-              className="bg-white text-kangen-700 hover:bg-gray-100 shadow-lg"
-            >
-              Become a Distributor
-            </CustomButton>
+            <GetStartedModal>
+              <CustomButton 
+                variant="secondary" 
+                size="lg" 
+                className="bg-white text-kangen-700 hover:bg-gray-100 shadow-lg"
+              >
+                Become a Distributor
+              </CustomButton>
+            </GetStartedModal>
           </div>
         </section>
 
