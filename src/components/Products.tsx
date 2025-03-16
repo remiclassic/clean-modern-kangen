@@ -1,10 +1,11 @@
+
 import React, { useState } from 'react';
 import { ProductCard } from './ui/ProductCard';
 import { CustomButton } from './ui/Button';
 import { ChevronDown, ChevronUp, Award } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './ui/alert-dialog';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const products = [
   {
@@ -132,6 +133,50 @@ const Products: React.FC = () => {
     })
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: { 
+      opacity: 1, 
+      height: "auto",
+      transition: { 
+        duration: 0.5, 
+        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: 0.1,
+        when: "beforeChildren"
+      }
+    },
+    exit: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1],
+        when: "afterChildren"
+      }
+    }
+  };
+
+  const additionalProductsVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }),
+    exit: { 
+      opacity: 0, 
+      y: 20,
+      transition: {
+        duration: 0.3,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
   return (
     <section id="products" className="bg-kangen-50/80 py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
@@ -201,28 +246,20 @@ const Products: React.FC = () => {
           ))}
         </div>
         
-        <Collapsible
-          open={isExpanded}
-          onOpenChange={setIsExpanded}
-          className="w-full"
-        >
-          <CollapsibleContent className="overflow-hidden transition-all duration-500 ease-in-out">
+        <AnimatePresence>
+          {isExpanded && (
             <motion.div 
               className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 mt-8 pt-8 border-t border-gray-200"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ 
-                opacity: isExpanded ? 1 : 0, 
-                height: isExpanded ? "auto" : 0,
-                transition: { duration: 0.5, ease: "easeInOut" }
-              }}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
             >
               {additionalProducts.map((product, index) => (
                 <motion.div 
                   key={product.id}
                   custom={index}
-                  initial="hidden"
-                  animate={isExpanded ? "visible" : "hidden"}
-                  variants={productVariants}
+                  variants={additionalProductsVariants}
                 >
                   <AlertDialog>
                     <ProductCard
@@ -262,27 +299,25 @@ const Products: React.FC = () => {
                 </motion.div>
               ))}
             </motion.div>
-          </CollapsibleContent>
-          
-          <div className="text-center mt-8">
-            <CollapsibleTrigger asChild>
-              <CustomButton 
-                variant="secondary" 
-                size="lg" 
-                onClick={handleViewAllProducts}
-                className="flex items-center gap-2 transition-all duration-300 hover:bg-kangen-100 mx-auto"
-              >
-                {isExpanded ? 'Hide Products' : 'View All Products'}
-                <motion.div
-                  animate={{ rotate: isExpanded ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ChevronDown className="h-4 w-4" />
-                </motion.div>
-              </CustomButton>
-            </CollapsibleTrigger>
-          </div>
-        </Collapsible>
+          )}
+        </AnimatePresence>
+        
+        <div className="text-center mt-8">
+          <CustomButton 
+            variant="secondary" 
+            size="lg" 
+            onClick={handleViewAllProducts}
+            className="flex items-center gap-2 transition-all duration-300 hover:bg-kangen-100 mx-auto"
+          >
+            {isExpanded ? 'Hide Products' : 'View All Products'}
+            <motion.div
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown className="h-4 w-4" />
+            </motion.div>
+          </CustomButton>
+        </div>
       </div>
     </section>
   );
