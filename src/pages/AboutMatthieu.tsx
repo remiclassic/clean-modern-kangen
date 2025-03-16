@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Contact from '@/components/Contact';
-import { CustomButton } from '@/components/ui/Button';
+import { CustomButton } from '@/components/ui/custom-button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, CheckCircle, MessageCircle, HeartHandshake, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';

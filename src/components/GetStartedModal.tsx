@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { CustomButton } from './ui/Button';
+import { CustomButton } from './ui/custom-button';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface GetStartedModalProps {

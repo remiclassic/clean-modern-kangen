@@ -2,7 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { CustomButton } from '@/components/ui/Button';
+import { CustomButton } from '@/components/ui/custom-button';
 import { BarChart, CheckCircle, DollarSign, Users, TrendingUp, Award } from 'lucide-react';
 import GetStartedModal from '@/components/GetStartedModal';
 import { useLanguage } from '@/context/LanguageContext';

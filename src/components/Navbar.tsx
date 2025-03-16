@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { CustomButton } from './ui/Button';
+import { CustomButton } from './ui/custom-button';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import GetStartedModal from './GetStartedModal';
